@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gerador de Contratos — DIRETRIX</title>
+<title>Suite Documental — DIRETRIX</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&display=swap" rel="stylesheet">
-
-<!-- html2canvas + jsPDF separados para controle total por página -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -34,13 +32,13 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   VIEW CONTROLLER
+   VIEWS
 ══════════════════════════════════════════ */
 .view { display: none; }
 .view.active { display: flex; }
 
 /* ══════════════════════════════════════════
-   VIEW 1 — EDITOR DE MINUTA
+   EDITOR
 ══════════════════════════════════════════ */
 #view-editor {
   min-height: 100vh;
@@ -81,21 +79,16 @@ body {
 .editor-badge {
   font-size: 11px;
   font-weight: 600;
-  color: var(--verde-dark);
-  background: #d4f5e7;
-  padding: 5px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.5px;
+  color: var(--verde);
   text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .editor-title {
   font-family: 'Poppins', sans-serif;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--azul);
-  line-height: 1.2;
-  margin-bottom: 6px;
 }
 
 .editor-subtitle {
@@ -103,7 +96,7 @@ body {
   color: var(--texto-light);
 }
 
-/* Cards do formulário */
+/* ── Cards ── */
 .editor-card {
   width: 100%;
   max-width: 860px;
@@ -137,21 +130,15 @@ body {
   border-radius: 2px;
 }
 
+/* ── Formulários ── */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-
 .form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 .form-grid.cols-1 { grid-template-columns: 1fr; }
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
+.form-group { display: flex; flex-direction: column; gap: 6px; }
 .form-group.span-2 { grid-column: span 2; }
 
 label {
@@ -188,25 +175,9 @@ textarea {
   font-size: 13.5px;
 }
 
-.textarea-hint {
-  font-size: 11px;
-  color: #94a3b8;
-  margin-top: 4px;
-}
-
-/* Seção de cláusulas dinâmicas */
-.clauses-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.clause-item {
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fafbfc;
-}
+/* ── Cláusulas dinâmicas ── */
+.clauses-list { display: flex; flex-direction: column; gap: 12px; }
+.clause-item { border: 1.5px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: #fafbfc; }
 
 .clause-header {
   display: flex;
@@ -215,678 +186,437 @@ textarea {
   padding: 12px 16px;
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
-  cursor: pointer;
 }
 
 .clause-num {
-  width: 26px;
-  height: 26px;
-  background: var(--azul);
-  color: #fff;
+  width: 26px; height: 26px;
+  background: var(--azul); color: #fff;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
 }
 
 .clause-name-input {
-  flex: 1;
-  border: none;
-  background: transparent;
+  flex: 1; border: none; background: transparent;
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--azul);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 0;
-  outline: none;
+  font-size: 12px; font-weight: 700;
+  color: var(--azul); text-transform: uppercase;
+  letter-spacing: 0.5px; padding: 0; outline: none;
 }
-
 .clause-name-input:focus { border-bottom: 1px dashed var(--verde); }
 
 .clause-remove {
-  width: 22px;
-  height: 22px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #cbd5e1;
-  font-size: 18px;
-  line-height: 1;
-  transition: color 0.2s;
-  padding: 0;
+  width: 22px; height: 22px; background: none; border: none;
+  cursor: pointer; color: #cbd5e1; font-size: 18px; line-height: 1; transition: color 0.2s; padding: 0;
 }
 .clause-remove:hover { color: #ef4444; }
 
 .clause-body-input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 12px 16px;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--texto);
-  resize: vertical;
-  min-height: 100px;
-  outline: none;
-  font-family: 'Inter', sans-serif;
+  width: 100%; border: none; background: transparent;
+  padding: 12px 16px; font-size: 13.5px; line-height: 1.7;
+  color: var(--texto); resize: vertical; min-height: 100px;
+  outline: none; font-family: 'Inter', sans-serif;
 }
 
 .add-clause-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: 1.5px dashed #cbd5e1;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #64748b;
-  cursor: pointer;
-  transition: all 0.2s;
-  width: 100%;
-  justify-content: center;
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: 1.5px dashed #cbd5e1;
+  border-radius: 10px; padding: 12px 20px;
+  font-size: 13px; font-weight: 600; color: #64748b;
+  cursor: pointer; transition: all 0.2s; width: 100%; justify-content: center;
 }
-.add-clause-btn:hover {
-  border-color: var(--verde);
-  color: var(--verde);
-  background: #f0fdf7;
-}
+.add-clause-btn:hover { border-color: var(--verde); color: var(--verde); background: #f0fdf7; }
 
-/* Modo textarea único (minuta livre) */
-.mode-tabs {
-  display: flex;
-  gap: 4px;
-  background: #f1f5f9;
-  padding: 4px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
+/* ── Tabs de modo (cláusulas/livre) ── */
+.mode-tabs { display: flex; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 10px; margin-bottom: 20px; }
 .mode-tab {
-  flex: 1;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: transparent;
-  color: #64748b;
+  flex: 1; padding: 8px 16px; border: none; border-radius: 7px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; background: transparent; color: #64748b;
 }
-.mode-tab.active {
-  background: #fff;
-  color: var(--azul);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-}
-
+.mode-tab.active { background: #fff; color: var(--azul); box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
 .mode-panel { display: none; }
 .mode-panel.active { display: block; }
 
-/* Botão principal */
-.editor-actions {
-  width: 100%;
-  max-width: 860px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+/* ── Abas Principais ── */
+.main-tabs {
+  width: 100%; max-width: 860px;
+  display: flex; gap: 4px;
+  background: var(--azul); padding: 5px;
+  border-radius: 14px; margin-bottom: 28px;
 }
+.main-tab {
+  flex: 1; padding: 12px 20px; border: none; border-radius: 10px;
+  font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+  background: transparent; color: rgba(255,255,255,0.45); letter-spacing: 0.3px;
+}
+.main-tab:hover { color: rgba(255,255,255,0.75); }
+.main-tab.active { background: var(--verde); color: #fff; box-shadow: 0 4px 14px rgba(0,168,107,0.35); }
+.tab-panel { display: none; width: 100%; max-width: 860px; }
+.tab-panel.active { display: block; }
+
+/* ── Botões ── */
+.editor-actions { width: 100%; max-width: 860px; display: flex; justify-content: flex-end; gap: 12px; }
 
 .btn-primary {
-  background: var(--verde);
-  color: #fff;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 50px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,168,107,0.3);
-  transition: all 0.25s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  background: var(--verde); color: #fff; border: none;
+  padding: 14px 32px; border-radius: 50px;
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px;
+  cursor: pointer; box-shadow: 0 8px 20px rgba(0,168,107,0.3);
+  transition: all 0.25s; display: flex; align-items: center; gap: 10px;
 }
-.btn-primary:hover {
-  background: var(--azul);
-  box-shadow: 0 8px 20px rgba(10,31,68,0.3);
-  transform: translateY(-2px);
-}
+.btn-primary:hover { background: var(--azul); box-shadow: 0 8px 20px rgba(10,31,68,0.3); transform: translateY(-2px); }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--azul);
-  border: 2px solid var(--azul);
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.25s;
+  background: transparent; color: var(--azul); border: 2px solid var(--azul);
+  padding: 14px 28px; border-radius: 50px;
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: all 0.25s;
 }
-.btn-secondary:hover {
-  background: var(--azul);
-  color: #fff;
+.btn-secondary:hover { background: var(--azul); color: #fff; }
+
+/* ── Tabela Orçamento ── */
+.orc-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.orc-table th {
+  background: var(--azul); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  text-transform: uppercase; padding: 10px 12px; text-align: left;
 }
+.orc-table th:first-child { border-radius: 8px 0 0 0; }
+.orc-table th:last-child { border-radius: 0 8px 0 0; text-align: right; }
+.orc-table td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
+.orc-table td:last-child { text-align: right; }
+.orc-table input {
+  border: none; background: transparent; padding: 4px;
+  font-size: 13px; width: 100%; outline: none; font-family: 'Inter', sans-serif;
+}
+.orc-table input:focus { border-bottom: 1px dashed var(--verde); }
+.orc-table .num-input { text-align: right; width: 90px; }
+.orc-total-row { background: #f0fdf7; font-weight: 700; }
+.orc-total-row td { border-bottom: none; font-size: 15px; color: var(--verde-dark); }
 
 /* ══════════════════════════════════════════
-   VIEW 2 — PREVIEW / PDF
+   PREVIEW / PDF
 ══════════════════════════════════════════ */
 #view-preview {
-  min-height: 100vh;
-  background: #d1d5db;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 0;
+  min-height: 100vh; background: #d1d5db;
+  flex-direction: column; align-items: center; padding: 50px 0;
 }
 
 .preview-topbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: var(--azul);
-  padding: 14px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--azul); padding: 14px 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 2000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.topbar-logo {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 18px;
-  color: #fff;
-  letter-spacing: -0.5px;
-}
+.topbar-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 18px; color: #fff; letter-spacing: -0.5px; }
 .topbar-logo span { color: var(--verde); }
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
 
 .topbar-btn {
-  padding: 9px 20px;
-  border-radius: 50px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
+  padding: 9px 20px; border-radius: 50px;
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px; border: none;
 }
-
-.topbar-btn.outline {
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.8);
-}
+.topbar-btn.outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
 .topbar-btn.outline:hover { border-color: #fff; color: #fff; }
-
-.topbar-btn.solid {
-  background: var(--verde);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,168,107,0.4);
-}
-.topbar-btn.solid:hover {
-  background: #00c47d;
-  transform: translateY(-1px);
-}
-
-.topbar-btn:disabled {
-  opacity: 0.5;
-  cursor: wait;
-  transform: none !important;
-}
+.topbar-btn.solid { background: var(--verde); color: #fff; box-shadow: 0 4px 12px rgba(0,168,107,0.4); }
+.topbar-btn.solid:hover { background: #00c47d; transform: translateY(-1px); }
+.topbar-btn:disabled { opacity: 0.5; cursor: wait; transform: none !important; }
 
 #documento-completo {
-  margin-top: 70px; /* espaço da topbar */
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
-  width: 100%;
-  padding: 30px 0 40px;
+  margin-top: 70px;
+  display: flex; flex-direction: column; gap: 30px;
+  align-items: center; width: 100%; padding: 30px 0 40px;
 }
 
 /* ══════════════════════════════════════════
    PÁGINA A4
 ══════════════════════════════════════════ */
 .page-a4 {
-  width: 794px;
-  height: 1123px;
-  min-width: 794px;
-  min-height: 1123px;
-  background: #FFFFFF;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  width: 794px; height: 1123px; min-width: 794px; min-height: 1123px;
+  background: #FFFFFF; box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  position: relative; display: flex; flex-direction: column;
+  overflow: hidden; flex-shrink: 0;
 }
 
-/* ─── Cabeçalho ─── */
 .lh-header {
-  background: var(--azul);
-  padding: 30px 50px;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
+  background: var(--azul); padding: 30px 50px; color: #fff;
+  display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
 }
-
-.lh-logo {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 24px;
-  letter-spacing: -1px;
-}
+.lh-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -1px; }
 .lh-logo span { color: var(--verde); }
+.lh-info { text-align: right; font-size: 8.5px; opacity: 0.75; line-height: 1.6; letter-spacing: 0.5px; text-transform: uppercase; }
+.lh-stripe { height: 5px; background: linear-gradient(90deg, var(--verde), var(--verde-dark)); flex-shrink: 0; }
 
-.lh-info {
-  text-align: right;
-  font-size: 8.5px;
-  opacity: 0.75;
-  line-height: 1.6;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.lh-stripe {
-  height: 5px;
-  background: linear-gradient(90deg, var(--verde), var(--verde-dark));
-  flex-shrink: 0;
-}
-
-/* ─── Corpo ─── */
-.lh-body {
-  padding: 44px 55px 90px 55px;
-  flex: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
+.lh-body { padding: 44px 55px 90px 55px; flex: 1; position: relative; display: flex; flex-direction: column; overflow: hidden; }
 .lh-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 420px;
-  color: rgba(10,31,68,0.028);
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 420px;
+  color: rgba(10,31,68,0.028); z-index: 0; pointer-events: none; user-select: none;
 }
 
-.document-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  position: relative;
-  z-index: 1;
-}
-
-.doc-date {
-  font-size: 10.5px;
-  color: var(--texto-light);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.doc-id {
-  font-size: 10.5px;
-  color: var(--texto-light);
-  font-family: monospace;
-}
+.document-meta { display: flex; justify-content: space-between; margin-bottom: 28px; position: relative; z-index: 1; }
+.doc-date { font-size: 10.5px; color: var(--texto-light); letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+.doc-id { font-size: 10.5px; color: var(--texto-light); font-family: monospace; }
 
 .doc-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 700;
-  color: var(--azul);
-  border-left: 4px solid var(--verde);
-  padding-left: 14px;
-  margin-bottom: 36px;
-  line-height: 1.3;
-  position: relative;
-  z-index: 1;
+  font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 700;
+  color: var(--azul); border-left: 4px solid var(--verde); padding-left: 14px;
+  margin-bottom: 36px; line-height: 1.3; position: relative; z-index: 1;
 }
 
-.content {
-  position: relative;
-  z-index: 1;
-  font-size: 13px;
-  line-height: 1.8;
-  color: #222;
-  text-align: justify;
-}
-
+.content { position: relative; z-index: 1; font-size: 13px; line-height: 1.8; color: #222; text-align: justify; }
 .content h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--azul);
-  margin: 22px 0 10px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: 'Poppins', sans-serif; font-size: 11.5px; font-weight: 700;
+  color: var(--azul); margin: 22px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;
 }
-
-.content p  { margin-bottom: 10px; }
+.content p { margin-bottom: 10px; }
 .content ul { margin-bottom: 12px; padding-left: 18px; }
 .content li { margin-bottom: 6px; }
 
-/* ─── Assinaturas ─── */
-.signatures-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  margin-top: 50px;
-  width: 100%;
-}
+.signatures-wrapper { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; margin-top: 50px; width: 100%; }
+.signatures { display: flex; flex-direction: column; gap: 50px; width: 80%; }
+.sig-box { width: 100%; text-align: center; }
+.sig-line { width: 100%; height: 1px; background: #333; margin-bottom: 12px; }
+.sig-name { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; color: var(--azul); }
+.sig-role { font-size: 11px; color: var(--texto-light); margin-top: 3px; }
 
-.signatures {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  width: 80%;
-}
-
-.sig-box  { width: 100%; text-align: center; }
-
-.sig-line {
-  width: 100%;
-  height: 1px;
-  background: #333;
-  margin-bottom: 12px;
-}
-
-.sig-name {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--azul);
-}
-
-.sig-role {
-  font-size: 11px;
-  color: var(--texto-light);
-  margin-top: 3px;
-}
-
-/* ─── Rodapé ─── */
 .lh-footer {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%;
-  padding: 20px 50px;
-  font-size: 8.5px;
-  color: var(--texto-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--borda);
-  background: #fff;
-  box-sizing: border-box;
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  padding: 20px 50px; font-size: 8.5px; color: var(--texto-light);
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--borda); background: #fff;
 }
+.lh-footer-brand { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--azul); letter-spacing: 0.5px; }
 
-.lh-footer-brand {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: var(--azul);
-  letter-spacing: 0.5px;
+/* ── Exportando ── */
+body.exporting { padding: 0 !important; margin: 0 !important; background: #fff !important; }
+body.exporting .preview-topbar, body.exporting .loading-overlay { display: none !important; }
+body.exporting .page-a4 { box-shadow: none !important; margin: 0 !important; }
+body.exporting #documento-completo { margin-top: 0; padding: 0; gap: 0; }
+
+/* ── Loading ── */
+.loading-overlay {
+  position: fixed; inset: 0; background: rgba(10,31,68,0.92);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 5000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
 }
-
-/* ══════════════════════════════════════════
-   ESTADO EXPORTANDO
-══════════════════════════════════════════ */
-body.exporting {
-  padding: 0 !important;
-  margin: 0 !important;
-  background: #fff !important;
-  display: block !important;
-}
-
-body.exporting #view-preview {
-  padding: 0 !important;
-  background: #fff !important;
-  display: block !important;
-}
-
-body.exporting .preview-topbar { display: none !important; }
-
-body.exporting #documento-completo {
-  display: block !important;
-  gap: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body.exporting .page-a4 {
-  box-shadow: none !important;
-  margin: 0 !important;
-  border: none !important;
-}
-
-/* ══════════════════════════════════════════
-   LOADING OVERLAY
-══════════════════════════════════════════ */
-#loading-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10,31,68,0.85);
-  z-index: 9999;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-#loading-overlay.visible { display: flex; }
-
+.loading-overlay.visible { opacity: 1; pointer-events: all; }
 .loading-spinner {
-  width: 50px; height: 50px;
-  border: 4px solid rgba(255,255,255,0.15);
-  border-top-color: var(--verde);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.15);
+  border-top-color: var(--verde); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 20px;
 }
-
 @keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-family: 'Poppins', sans-serif; color: #fff; font-size: 16px; font-weight: 700; }
+.loading-sub { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 8px; }
 
-.loading-text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  color: #fff;
-  font-weight: 500;
-}
-
-.loading-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-}
+/* ── Conteúdo fonte (hidden) ── */
+#source-content { position: absolute; left: -9999px; top: 0; width: 684px; font-size: 13px; line-height: 1.8; }
+#source-content h3 { font-family: 'Poppins', sans-serif; font-size: 11.5px; font-weight: 700; color: var(--azul); margin: 22px 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+#source-content p { margin-bottom: 10px; }
+#source-content ul { margin-bottom: 12px; padding-left: 18px; }
+#source-content li { margin-bottom: 6px; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════
-     LOADING OVERLAY
-════════════════════════════════════════════════════ -->
-<div id="loading-overlay">
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
   <div class="loading-spinner"></div>
   <div class="loading-text">Gerando PDF, aguarde...</div>
   <div class="loading-sub">Renderizando páginas em alta resolução</div>
 </div>
 
+<!-- Conteúdo fonte (invisível — usado para paginação) -->
+<div id="source-content"></div>
+
 <!-- ═══════════════════════════════════════════════════
-     VIEW 1 — EDITOR DE MINUTA
+     VIEW 1 — EDITOR
 ════════════════════════════════════════════════════ -->
 <div id="view-editor" class="view active">
 
   <div class="editor-header">
     <div class="editor-header-top">
       <div class="logo-pill">DIRETRIX<span>.</span></div>
-      <span class="editor-badge">Gerador de Contratos</span>
+      <span class="editor-badge">Suite Documental</span>
     </div>
-    <h1 class="editor-title">Preencha a Minuta</h1>
-    <p class="editor-subtitle">Configure os dados do contrato e clique em Visualizar para gerar o PDF timbrado.</p>
+    <h1 class="editor-title">Gerador de Documentos</h1>
+    <p class="editor-subtitle">Selecione o tipo de documento, preencha os campos e clique em Visualizar para gerar o PDF timbrado.</p>
   </div>
 
-  <!-- Card: Identificação -->
-  <div class="editor-card">
-    <div class="card-title">Identificação do Documento</div>
-    <div class="form-grid cols-3">
-      <div class="form-group">
-        <label>Cidade e Data</label>
-        <input type="text" id="f-data" value="MANAUS, 31 DE MARÇO DE 2026">
-      </div>
-      <div class="form-group">
-        <label>ID do Documento</label>
-        <input type="text" id="f-docid" value="DRTX-2026-JONATHAN">
-      </div>
-      <div class="form-group">
-        <label>Título do Contrato</label>
-        <input type="text" id="f-titulo" value="Contrato de Prestação de Serviços Técnicos e Treinamento">
-      </div>
-    </div>
+  <!-- ABAS PRINCIPAIS -->
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="switchTab('contrato', this)">📄 Contrato</button>
+    <button class="main-tab" onclick="switchTab('oficio', this)">📨 Ofício</button>
+    <button class="main-tab" onclick="switchTab('orcamento', this)">💰 Orçamento</button>
   </div>
 
-  <!-- Card: Contratante -->
-  <div class="editor-card">
-    <div class="card-title">Contratante</div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Razão Social</label>
-        <input type="text" id="f-ctante-nome" value="DIRETRIX SOLUÇÕES CORPORATIVAS LTDA">
-      </div>
-      <div class="form-group">
-        <label>CNPJ</label>
-        <input type="text" id="f-ctante-cnpj" value="45.529.299/0001-04">
-      </div>
-      <div class="form-group span-2">
-        <label>Endereço Completo</label>
-        <input type="text" id="f-ctante-end" value="Avenida André Araújo, nº 2721, Bairro Aleixo, Parque Morada do Sol, CEP 69.060-000, Manaus/AM">
-      </div>
-      <div class="form-group">
-        <label>Representante Legal</label>
-        <input type="text" id="f-ctante-rep" value="ANDRESSA SILVA DE LIMA">
-      </div>
-      <div class="form-group">
-        <label>Cargo do Representante</label>
-        <input type="text" id="f-ctante-cargo" value="sócia administradora">
+  <!-- ═══════ TAB: CONTRATO ═══════ -->
+  <div id="tab-contrato" class="tab-panel active">
+    <div class="editor-card">
+      <div class="card-title">Identificação do Documento</div>
+      <div class="form-grid cols-3">
+        <div class="form-group"><label>Cidade e Data</label><input type="text" id="f-data" value="MANAUS, 31 DE MARÇO DE 2026"></div>
+        <div class="form-group"><label>ID do Documento</label><input type="text" id="f-docid" value="DRTX-2026-001"></div>
+        <div class="form-group"><label>Título do Contrato</label><input type="text" id="f-titulo" value="Contrato de Prestação de Serviços Técnicos e Treinamento"></div>
       </div>
     </div>
-  </div>
 
-  <!-- Card: Contratado -->
-  <div class="editor-card">
-    <div class="card-title">Contratado</div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Nome Completo</label>
-        <input type="text" id="f-ctado-nome" value="JONATHAN DA SILVA SANTIAGO">
+    <div class="editor-card">
+      <div class="card-title">Qualificação das Partes</div>
+      <div class="form-grid">
+        <div class="form-group span-2"><label>Contratante (Razão Social)</label><input type="text" id="f-ctante-nome" value="DIRETRIX SOLUÇÕES CORPORATIVAS LTDA"></div>
+        <div class="form-group"><label>CNPJ</label><input type="text" id="f-ctante-cnpj" value="45.529.299/0001-04"></div>
+        <div class="form-group"><label>Endereço</label><input type="text" id="f-ctante-end" value="Av. André Araújo, 2721, Bairro Aleixo, Manaus/AM, CEP 69.060-000"></div>
+        <div class="form-group"><label>Representante</label><input type="text" id="f-ctante-rep" value="Andressa Silva de Lima"></div>
+        <div class="form-group"><label>Cargo</label><input type="text" id="f-ctante-cargo" value="Diretora Executiva"></div>
       </div>
-      <div class="form-group">
-        <label>Qualificação (ex: brasileiro, solteiro)</label>
-        <input type="text" id="f-ctado-qual" value="brasileiro, solteiro, Especialista em Software">
+      <div style="border-top:1px solid #e2e8f0;margin:20px 0;padding-top:20px;">
+        <div class="form-grid">
+          <div class="form-group span-2"><label>Contratado (Nome Completo)</label><input type="text" id="f-ctado-nome" value=""></div>
+          <div class="form-group"><label>Qualificação</label><input type="text" id="f-ctado-qual" value="brasileiro(a), maior, capaz"></div>
+          <div class="form-group"><label>RG</label><input type="text" id="f-ctado-rg" value=""></div>
+          <div class="form-group"><label>CPF</label><input type="text" id="f-ctado-cpf" value=""></div>
+          <div class="form-group"><label>Endereço</label><input type="text" id="f-ctado-end" value=""></div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>RG</label>
-        <input type="text" id="f-ctado-rg" value="2358240-5 SSP/AM">
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Cláusulas do Contrato</div>
+      <div class="mode-tabs">
+        <button class="mode-tab active" onclick="setMode('estruturado', this)">📋 Cláusulas Estruturadas</button>
+        <button class="mode-tab" onclick="setMode('livre', this)">✏️ Minuta Livre</button>
       </div>
-      <div class="form-group">
-        <label>CPF</label>
-        <input type="text" id="f-ctado-cpf" value="027.249.722-36">
+      <div id="mode-estruturado" class="mode-panel active">
+        <div class="clauses-list" id="clauses-list"></div>
+        <div style="margin-top:12px;"><button class="add-clause-btn" onclick="addClause()">+ Adicionar Cláusula</button></div>
       </div>
-      <div class="form-group span-2">
-        <label>Endereço Completo</label>
-        <input type="text" id="f-ctado-end" value="Rua Monte Castelo, 646 – Japiim, CEP: 69.078-510, Manaus/AM">
+      <div id="mode-livre" class="mode-panel">
+        <label>Cole ou escreva a minuta completa</label>
+        <textarea id="f-minuta-livre" placeholder="Cole aqui o texto completo do contrato..."></textarea>
       </div>
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Assinaturas</div>
+      <div class="clauses-list" id="sigs-list"></div>
+      <div style="margin-top:12px;"><button class="add-clause-btn" onclick="addSig()">+ Adicionar Signatário</button></div>
+    </div>
+
+    <div class="editor-actions">
+      <button class="btn-secondary" onclick="loadContractTemplate()">↺ Restaurar Exemplo</button>
+      <button class="btn-primary" onclick="gerarPreview('contrato')">Visualizar Contrato <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
     </div>
   </div>
 
-  <!-- Card: Cláusulas -->
-  <div class="editor-card">
-    <div class="card-title">Cláusulas do Contrato</div>
-
-    <div class="mode-tabs">
-      <button class="mode-tab active" onclick="setMode('estruturado', this)">📋 Cláusulas Estruturadas</button>
-      <button class="mode-tab" onclick="setMode('livre', this)">✏️ Minuta Livre (Texto Completo)</button>
+  <!-- ═══════ TAB: OFÍCIO ═══════ -->
+  <div id="tab-oficio" class="tab-panel">
+    <div class="editor-card">
+      <div class="card-title">Identificação do Ofício</div>
+      <div class="form-grid cols-3">
+        <div class="form-group"><label>Número do Ofício</label><input type="text" id="of-numero" value="OF-001/2026"></div>
+        <div class="form-group"><label>Data</label><input type="text" id="of-data" value="Manaus, 13 de abril de 2026"></div>
+        <div class="form-group"><label>Doc ID</label><input type="text" id="of-docid" value="DRTX-OF-2026-001"></div>
+      </div>
     </div>
 
-    <!-- Modo estruturado -->
-    <div id="mode-estruturado" class="mode-panel active">
-      <div class="clauses-list" id="clauses-list">
-        <!-- Cláusulas preenchidas pelo JS -->
+    <div class="editor-card">
+      <div class="card-title">Destinatário</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Nome</label><input type="text" id="of-dest-nome" placeholder="Excelentíssimo(a) Senhor(a)"></div>
+        <div class="form-group"><label>Cargo / Função</label><input type="text" id="of-dest-cargo" placeholder="Diretor(a), Secretário(a), etc."></div>
+        <div class="form-group span-2"><label>Instituição / Órgão</label><input type="text" id="of-dest-inst" placeholder="Nome da instituição ou órgão"></div>
       </div>
-      <br>
-      <button class="add-clause-btn" onclick="addClause()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Adicionar Cláusula
-      </button>
     </div>
 
-    <!-- Modo livre -->
-    <div id="mode-livre" class="mode-panel">
-      <div class="form-group">
-        <label>Cole ou escreva a minuta completa abaixo</label>
-        <textarea id="f-minuta-livre" placeholder="Cole aqui o texto completo do contrato ou escreva livremente. Utilize CLÁUSULA X – TÍTULO em maiúsculas para criar seções automáticas.
-
-Exemplo:
-
-CLÁUSULA PRIMEIRA – DO OBJETO
-1.1. O objeto deste contrato é...
-
-CLÁUSULA SEGUNDA – DO PAGAMENTO
-2.1. O valor acordado é..."></textarea>
-        <span class="textarea-hint">💡 Linhas que começam com "CLÁUSULA" em maiúsculas serão automaticamente formatadas como título de seção.</span>
+    <div class="editor-card">
+      <div class="card-title">Conteúdo do Ofício</div>
+      <div class="form-grid cols-1">
+        <div class="form-group"><label>Assunto</label><input type="text" id="of-assunto" placeholder="Assunto do ofício"></div>
+        <div class="form-group"><label>Referência (opcional)</label><input type="text" id="of-referencia" placeholder="Ref.: Processo nº..., Edital nº..."></div>
+        <div class="form-group"><label>Corpo do Ofício</label><textarea id="of-corpo" style="min-height:220px;" placeholder="Prezado(a) Senhor(a),&#10;&#10;Vimos por meio deste..."></textarea></div>
       </div>
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Encerramento e Assinatura</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Saudação Final</label><input type="text" id="of-saudacao" value="Atenciosamente,"></div>
+        <div class="form-group"><label>Nome do Signatário</label><input type="text" id="of-sig-nome" value="Andressa Silva de Lima"></div>
+        <div class="form-group"><label>Cargo</label><input type="text" id="of-sig-cargo" value="Diretora Executiva"></div>
+        <div class="form-group"><label>Instituição</label><input type="text" id="of-sig-inst" value="DIRETRIX SOLUÇÕES CORPORATIVAS LTDA"></div>
+      </div>
+    </div>
+
+    <div class="editor-actions">
+      <button class="btn-primary" onclick="gerarPreview('oficio')">Visualizar Ofício <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
     </div>
   </div>
 
-  <!-- Card: Assinaturas -->
-  <div class="editor-card">
-    <div class="card-title">Assinaturas</div>
-    <div id="sigs-list" class="clauses-list">
-      <!-- preenchido pelo JS -->
+  <!-- ═══════ TAB: ORÇAMENTO ═══════ -->
+  <div id="tab-orcamento" class="tab-panel">
+    <div class="editor-card">
+      <div class="card-title">Identificação do Orçamento</div>
+      <div class="form-grid cols-3">
+        <div class="form-group"><label>Número</label><input type="text" id="orc-numero" value="ORC-2026-001"></div>
+        <div class="form-group"><label>Data</label><input type="text" id="orc-data" value="13 de abril de 2026"></div>
+        <div class="form-group"><label>Validade</label><input type="text" id="orc-validade" value="30 dias"></div>
+      </div>
     </div>
-    <br>
-    <button class="add-clause-btn" onclick="addSig()">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Adicionar Assinatura
-    </button>
-  </div>
 
-  <div class="editor-actions">
-    <button class="btn-secondary" onclick="loadTemplate()">↺ Restaurar Exemplo</button>
-    <button class="btn-primary" onclick="gerarPreview()">
-      Visualizar Contrato
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
+    <div class="editor-card">
+      <div class="card-title">Dados do Cliente</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Razão Social / Nome</label><input type="text" id="orc-cli-nome" placeholder="EMPRESA CLIENTE LTDA"></div>
+        <div class="form-group"><label>CNPJ / CPF</label><input type="text" id="orc-cli-doc" placeholder="00.000.000/0001-00"></div>
+        <div class="form-group span-2"><label>Endereço</label><input type="text" id="orc-cli-end" placeholder="Rua, número, bairro, cidade/UF"></div>
+        <div class="form-group"><label>Contato</label><input type="text" id="orc-cli-contato" placeholder="Nome do responsável"></div>
+        <div class="form-group"><label>Email</label><input type="text" id="orc-cli-email" placeholder="email@empresa.com"></div>
+      </div>
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Itens do Orçamento</div>
+      <table class="orc-table">
+        <thead><tr><th style="width:40px">#</th><th>Descrição</th><th style="width:60px">Qtd</th><th style="width:130px">Valor Unit. (R$)</th><th style="width:130px">Subtotal</th></tr></thead>
+        <tbody id="orc-items-list"></tbody>
+        <tfoot><tr class="orc-total-row"><td colspan="4" style="text-align:right;padding-right:16px;">TOTAL</td><td id="orc-total" style="text-align:right;font-size:16px;">R$ 0,00</td></tr></tfoot>
+      </table>
+      <div style="margin-top:12px;"><button class="add-clause-btn" onclick="addOrcItem()">+ Adicionar Item</button></div>
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Condições e Escopo</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Condições de Pagamento</label><input type="text" id="orc-pagamento" value="50% na aprovação, 50% na entrega"></div>
+        <div class="form-group"><label>Prazo de Entrega</label><input type="text" id="orc-prazo" value="30 dias úteis após aprovação"></div>
+        <div class="form-group span-2"><label>O que inclui</label><textarea id="orc-inclui" style="min-height:80px;">Material técnico e apresentações
+Suporte pós-entrega por 15 dias
+Relatório final de execução</textarea></div>
+        <div class="form-group span-2"><label>O que NÃO inclui</label><textarea id="orc-exclui" style="min-height:80px;">Deslocamentos fora de Manaus/AM
+Licenças e autorizações de terceiros
+Equipamentos especializados</textarea></div>
+      </div>
+    </div>
+
+    <div class="editor-card">
+      <div class="card-title">Responsável pela Proposta</div>
+      <div class="form-grid cols-3">
+        <div class="form-group"><label>Nome</label><input type="text" id="orc-resp-nome" value="Andressa Silva de Lima"></div>
+        <div class="form-group"><label>Cargo</label><input type="text" id="orc-resp-cargo" value="Diretora Executiva — DIRETRIX"></div>
+        <div class="form-group"><label>Email</label><input type="text" id="orc-resp-email" value="corporativo@diretrix.com.br"></div>
+      </div>
+    </div>
+
+    <div class="editor-actions">
+      <button class="btn-secondary" onclick="loadOrcTemplate()">↺ Restaurar Exemplo</button>
+      <button class="btn-primary" onclick="gerarPreview('orcamento')">Visualizar Orçamento <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    </div>
   </div>
 
 </div>
@@ -895,88 +625,36 @@ CLÁUSULA SEGUNDA – DO PAGAMENTO
      VIEW 2 — PREVIEW PDF
 ════════════════════════════════════════════════════ -->
 <div id="view-preview" class="view">
-
   <div class="preview-topbar">
     <div class="topbar-logo">DIRETRIX<span>.</span></div>
     <div class="topbar-actions">
-      <button class="topbar-btn outline" onclick="voltarEditor()">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        Editar Minuta
-      </button>
-      <button class="topbar-btn solid" id="btn-pdf" onclick="gerarPDF()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar PDF
-      </button>
+      <button class="topbar-btn outline" onclick="voltarEditor()">← Voltar ao Editor</button>
+      <button class="topbar-btn solid" id="btn-pdf" onclick="gerarPDF()">⬇ Exportar PDF</button>
     </div>
   </div>
-
   <div id="documento-completo"></div>
-
 </div>
-
-<!-- CONTEÚDO OCULTO PARA AUTOPAGINAÇÃO -->
-<div id="source-content" style="display:none;"></div>
 
 <script>
 // ═══════════════════════════════════════════════════
-// ESTADO DO APP
+// ESTADO
 // ═══════════════════════════════════════════════════
 let currentMode = 'estruturado';
-
-const defaultClauses = [
-  {
-    title: 'CLÁUSULA PRIMEIRA – DO OBJETO E ESCOPO',
-    body: `1.1. O objeto deste contrato é a prestação de serviços técnicos de Treinamento Especializado em Validação de Dados Sensíveis, abrangendo especificamente:\n• Protocolos de integração de sistemas e APIs;\n• Arquitetura de armazenamento seguro de dados;\n• Validação de integridade e segurança da informação conforme padrões de mercado.`
-  },
-  {
-    title: 'CLÁUSULA SEGUNDA – DO VALOR E FORMA DE PAGAMENTO',
-    body: `2.1. Pela execução integral dos serviços, a CONTRATANTE pagará ao CONTRATADO o valor total de R$ 26.400,00 (vinte e seis mil e quatrocentos reais).\n2.2. O pagamento será efetuado em parcela única no dia 31/03/2026.\n2.3. O crédito será realizado via transferência bancária para a conta de titularidade do CONTRATADO no Banco Bradesco (237), Agência 2130, Conta Corrente 6072-0.`
-  },
-  {
-    title: 'CLÁUSULA TERCEIRA – DA AUSÊNCIA DE VÍNCULO EMPREGATÍCIO',
-    body: `3.1. A prestação de serviços objeto deste contrato não implica, em qualquer hipótese, a existência de vínculo empregatício entre o CONTRATADO e a CONTRATANTE.\n3.2. O CONTRATADO assume total responsabilidade por seus encargos civis, fiscais, previdenciários e trabalhistas, declarando-se prestador de serviço autônomo, sem subordinação jurídica ou horários fixos impostos pela CONTRATANTE.`
-  },
-  {
-    title: 'CLÁUSULA QUARTA – DA PROPRIEDADE INTELECTUAL',
-    body: `4.1. Todo e qualquer material, código, metodologia ou documento desenvolvido ou aprimorado pelo CONTRATADO durante a execução deste contrato pertencerá exclusivamente à DIRETRIX SOLUÇÕES CORPORATIVAS LTDA.\n4.2. O CONTRATADO cede, neste ato, de forma irrevogável, todos os direitos patrimoniais de propriedade intelectual sobre os resultados do serviço à CONTRATANTE.`
-  },
-  {
-    title: 'CLÁUSULA QUINTA – DO SIGILO E CONFIDENCIALIDADE (NDA)',
-    body: `5.1. O CONTRATADO obriga-se a manter o mais absoluto sigilo sobre quaisquer dados, estratégias, senhas ou informações da CONTRATANTE a que venha a ter acesso.\n5.2. O descumprimento desta cláusula sujeitará o CONTRATADO ao pagamento de multa penal equivalente a 10 (dez) vezes o valor deste contrato, sem prejuízo de perdas e danos.`
-  },
-  {
-    title: 'CLÁUSULA SEXTA – DA PROTEÇÃO DE DADOS (LGPD)',
-    body: `6.1. O CONTRATADO declara plena ciência da Lei nº 13.709/2018 (LGPD) e compromete-se a tratar dados sensíveis e pessoais estritamente para a finalidade do treinamento, adotando medidas de segurança para evitar acessos não autorizados ou vazamentos.`
-  },
-  {
-    title: 'CLÁUSULA SÉTIMA – DA RESCISÃO E MULTAS',
-    body: `7.1. O presente contrato poderá ser rescindido por qualquer das partes mediante aviso prévio de 5 (cinco) dias.\n7.2. Em caso de inadimplemento de qualquer cláusula, a parte infratora pagará à parte inocente multa de 20% (vinte por cento) sobre o valor total do contrato.`
-  },
-  {
-    title: 'CLÁUSULA OITAVA – DO FORO',
-    body: `8.1. Fica eleito o Foro da Comarca de Manaus/AM para dirimir qualquer dúvida ou litígio resultante deste instrumento, com renúncia expressa a qualquer outro.`
-  }
-];
-
-const defaultSigs = [
-  { name: 'DIRETRIX SOLUÇÕES CORPORATIVAS LTDA', role: 'CONTRATANTE (Andressa Silva de Lima)' },
-  { name: 'JONATHAN DA SILVA SANTIAGO',          role: 'CONTRATADO' }
-];
+let currentDocType = 'contrato';
 
 // ═══════════════════════════════════════════════════
-// INICIALIZAÇÃO
+// ABAS PRINCIPAIS
 // ═══════════════════════════════════════════════════
-window.addEventListener('load', () => {
-  loadTemplate();
-});
-
-function loadTemplate() {
-  renderClauses(defaultClauses);
-  renderSigs(defaultSigs);
+function switchTab(tab, btn) {
+  currentDocType = tab;
+  document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
 }
 
 // ═══════════════════════════════════════════════════
-// TABS DE MODO
+// TABS MODO (cláusulas / livre)
 // ═══════════════════════════════════════════════════
 function setMode(mode, btn) {
   currentMode = mode;
@@ -987,14 +665,8 @@ function setMode(mode, btn) {
 }
 
 // ═══════════════════════════════════════════════════
-// RENDER CLÁUSULAS
+// CLÁUSULAS DINÂMICAS
 // ═══════════════════════════════════════════════════
-function renderClauses(clauses) {
-  const list = document.getElementById('clauses-list');
-  list.innerHTML = '';
-  clauses.forEach((c, i) => addClause(c.title, c.body));
-}
-
 function addClause(title = '', body = '') {
   const list = document.getElementById('clauses-list');
   const idx = list.children.length + 1;
@@ -1004,28 +676,20 @@ function addClause(title = '', body = '') {
     <div class="clause-header">
       <div class="clause-num">${idx}</div>
       <input class="clause-name-input" type="text" value="${title}" placeholder="NOME DA CLÁUSULA">
-      <button class="clause-remove" onclick="this.closest('.clause-item').remove(); renumberClauses()">×</button>
+      <button class="clause-remove" onclick="this.closest('.clause-item').remove(); renumber()">×</button>
     </div>
     <textarea class="clause-body-input" placeholder="Texto desta cláusula...">${body}</textarea>
   `;
   list.appendChild(item);
 }
 
-function renumberClauses() {
-  document.querySelectorAll('#clauses-list .clause-num').forEach((el, i) => {
-    el.textContent = i + 1;
-  });
+function renumber() {
+  document.querySelectorAll('#clauses-list .clause-num').forEach((el, i) => el.textContent = i + 1);
 }
 
 // ═══════════════════════════════════════════════════
-// RENDER ASSINATURAS
+// ASSINATURAS
 // ═══════════════════════════════════════════════════
-function renderSigs(sigs) {
-  const list = document.getElementById('sigs-list');
-  list.innerHTML = '';
-  sigs.forEach(s => addSig(s.name, s.role));
-}
-
 function addSig(name = '', role = '') {
   const list = document.getElementById('sigs-list');
   const item = document.createElement('div');
@@ -1044,99 +708,190 @@ function addSig(name = '', role = '') {
 }
 
 // ═══════════════════════════════════════════════════
-// MONTAR HTML DO CONTEÚDO
+// ORÇAMENTO — ITENS DINÂMICOS
 // ═══════════════════════════════════════════════════
-function buildContent() {
-  const v = id => document.getElementById(id).value.trim();
+function addOrcItem(desc = '', qtd = 1, valor = 0) {
+  const tbody = document.getElementById('orc-items-list');
+  const idx = tbody.children.length + 1;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="text-align:center;font-weight:600;color:#94a3b8;">${idx}</td>
+    <td><input type="text" value="${desc}" placeholder="Descrição do serviço/produto"></td>
+    <td><input type="number" class="num-input orc-qtd" value="${qtd}" min="1" onchange="calcOrcTotal()" oninput="calcOrcTotal()"></td>
+    <td><input type="number" class="num-input orc-valor" value="${valor}" min="0" step="0.01" onchange="calcOrcTotal()" oninput="calcOrcTotal()"></td>
+    <td style="text-align:right;font-weight:600;" class="orc-subtotal">R$ 0,00</td>
+  `;
+  tbody.appendChild(tr);
+  calcOrcTotal();
+}
 
+function calcOrcTotal() {
+  let total = 0;
+  document.querySelectorAll('#orc-items-list tr').forEach((row, i) => {
+    const qtd = parseFloat(row.querySelector('.orc-qtd').value) || 0;
+    const val = parseFloat(row.querySelector('.orc-valor').value) || 0;
+    const sub = qtd * val;
+    total += sub;
+    row.querySelector('.orc-subtotal').textContent = formatBRL(sub);
+    row.querySelector('td').textContent = i + 1;
+  });
+  document.getElementById('orc-total').textContent = formatBRL(total);
+}
+
+function formatBRL(v) { return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+// ═══════════════════════════════════════════════════
+// TEMPLATES PADRÃO
+// ═══════════════════════════════════════════════════
+const defaultClauses = [
+  { title: 'CLÁUSULA PRIMEIRA – DO OBJETO E ESCOPO', body: '1.1. O objeto deste contrato é a prestação de serviços técnicos conforme escopo acordado entre as partes.' },
+  { title: 'CLÁUSULA SEGUNDA – DO VALOR E FORMA DE PAGAMENTO', body: '2.1. Pela execução integral dos serviços, a CONTRATANTE pagará ao CONTRATADO o valor total de R$ ___.\n2.2. O pagamento será efetuado conforme condições acordadas.' },
+  { title: 'CLÁUSULA TERCEIRA – DA AUSÊNCIA DE VÍNCULO', body: '3.1. A prestação de serviços não implica vínculo empregatício entre CONTRATADO e CONTRATANTE.' },
+  { title: 'CLÁUSULA QUARTA – DA PROPRIEDADE INTELECTUAL', body: '4.1. Todo material desenvolvido pertencerá exclusivamente à DIRETRIX SOLUÇÕES CORPORATIVAS LTDA.' },
+  { title: 'CLÁUSULA QUINTA – DO SIGILO (NDA)', body: '5.1. O CONTRATADO obriga-se a manter absoluto sigilo sobre dados e informações da CONTRATANTE.\n5.2. O descumprimento sujeitará o CONTRATADO a multa de 10x o valor do contrato.' },
+  { title: 'CLÁUSULA SEXTA – DA LGPD', body: '6.1. O CONTRATADO declara ciência da Lei nº 13.709/2018 (LGPD) e compromete-se a tratar dados conforme a legislação.' },
+  { title: 'CLÁUSULA SÉTIMA – DA RESCISÃO', body: '7.1. O contrato poderá ser rescindido mediante aviso prévio de 5 dias.\n7.2. Multa de 20% sobre o valor total em caso de inadimplemento.' },
+  { title: 'CLÁUSULA OITAVA – DO FORO', body: '8.1. Fica eleito o Foro da Comarca de Manaus/AM.' }
+];
+
+const defaultSigs = [
+  { name: 'DIRETRIX SOLUÇÕES CORPORATIVAS LTDA', role: 'CONTRATANTE (Andressa Silva de Lima)' },
+  { name: '', role: 'CONTRATADO' }
+];
+
+function loadContractTemplate() {
+  const list = document.getElementById('clauses-list');
+  list.innerHTML = '';
+  defaultClauses.forEach(c => addClause(c.title, c.body));
+  const sigList = document.getElementById('sigs-list');
+  sigList.innerHTML = '';
+  defaultSigs.forEach(s => addSig(s.name, s.role));
+}
+
+function loadOrcTemplate() {
+  document.getElementById('orc-items-list').innerHTML = '';
+  addOrcItem('Diagnóstico e Levantamento de Requisitos', 1, 4800);
+  addOrcItem('Desenvolvimento de Solução Customizada', 1, 15600);
+  addOrcItem('Treinamento e Capacitação da Equipe (8h)', 2, 3200);
+  addOrcItem('Suporte Técnico Pós-Implantação (30 dias)', 1, 2800);
+  calcOrcTotal();
+}
+
+// ═══════════════════════════════════════════════════
+// BUILD CONTENT — CONTRATO
+// ═══════════════════════════════════════════════════
+function buildContractContent() {
+  const v = id => document.getElementById(id).value.trim();
   let html = '';
 
-  // Meta
-  html += `<div class="document-meta">
-    <div class="doc-date">${v('f-data')}</div>
-    <div class="doc-id">DOC ID: ${v('f-docid')}</div>
-  </div>`;
-
-  // Título
+  html += `<div class="document-meta"><div class="doc-date">${v('f-data')}</div><div class="doc-id">DOC ID: ${v('f-docid')}</div></div>`;
   html += `<div class="doc-title">${v('f-titulo')}</div>`;
+  html += `<p><strong>CONTRATANTE: ${v('f-ctante-nome')}</strong>, inscrita no CNPJ sob o nº ${v('f-ctante-cnpj')}, com sede na ${v('f-ctante-end')}, representada por ${v('f-ctante-cargo')}, <strong>${v('f-ctante-rep')}</strong>.</p>`;
+  html += `<p><strong>CONTRATADO: ${v('f-ctado-nome')}</strong>, ${v('f-ctado-qual')}, RG nº ${v('f-ctado-rg')}, CPF nº ${v('f-ctado-cpf')}, residente na ${v('f-ctado-end')}.</p>`;
+  html += `<p>As partes têm entre si justo e acertado o presente Contrato de Prestação de Serviços:</p>`;
 
-  // Qualificação das partes
-  const ctanteName  = v('f-ctante-nome');
-  const ctanteCnpj  = v('f-ctante-cnpj');
-  const ctanteEnd   = v('f-ctante-end');
-  const ctanteRep   = v('f-ctante-rep');
-  const ctanteCargo = v('f-ctante-cargo');
-  const ctadoNome   = v('f-ctado-nome');
-  const ctadoQual   = v('f-ctado-qual');
-  const ctadoRg     = v('f-ctado-rg');
-  const ctadoCpf    = v('f-ctado-cpf');
-  const ctadoEnd    = v('f-ctado-end');
-
-  html += `<p><strong>CONTRATANTE: ${ctanteName}</strong>, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº ${ctanteCnpj}, com sede na ${ctanteEnd}, neste ato representada por sua ${ctanteCargo}, <strong>${ctanteRep}</strong>.</p>`;
-  html += `<p><strong>CONTRATADO: ${ctadoNome}</strong>, ${ctadoQual}, portador da Carteira de Identidade (RG) nº ${ctadoRg} e do CPF nº ${ctadoCpf}, residente e domiciliado à ${ctadoEnd}.</p>`;
-  html += `<p>As partes acima identificadas têm, entre si, justo e acertado o presente Contrato de Prestação de Serviços, que se regerá pelas cláusulas seguintes:</p>`;
-
-  // Cláusulas
   if (currentMode === 'estruturado') {
-    const clauseItems = document.querySelectorAll('#clauses-list .clause-item');
-    clauseItems.forEach(item => {
+    document.querySelectorAll('#clauses-list .clause-item').forEach(item => {
       const title = item.querySelector('.clause-name-input').value.trim();
-      const body  = item.querySelector('.clause-body-input').value.trim();
+      const body = item.querySelector('.clause-body-input').value.trim();
       if (title) html += `<h3>${title}</h3>`;
-      if (body) {
-        body.split('\n').forEach(line => {
-          const l = line.trim();
-          if (!l) return;
-          if (l.startsWith('•') || l.startsWith('-')) {
-            html += `<ul><li>${l.replace(/^[•\-]\s*/, '')}</li></ul>`;
-          } else {
-            html += `<p>${l}</p>`;
-          }
-        });
-      }
+      if (body) body.split('\n').forEach(l => {
+        l = l.trim(); if (!l) return;
+        html += l.startsWith('•') || l.startsWith('-') ? `<ul><li>${l.replace(/^[•\-]\s*/, '')}</li></ul>` : `<p>${l}</p>`;
+      });
     });
   } else {
-    // Modo livre
-    const rawText = document.getElementById('f-minuta-livre').value;
-    const lines = rawText.split('\n');
-    lines.forEach(line => {
-      const l = line.trim();
-      if (!l) return;
-      if (/^CLÁUSULA\s+/i.test(l)) {
-        html += `<h3>${l}</h3>`;
-      } else if (l.startsWith('•') || l.startsWith('-')) {
-        html += `<ul><li>${l.replace(/^[•\-]\s*/, '')}</li></ul>`;
-      } else {
-        html += `<p>${l}</p>`;
-      }
+    document.getElementById('f-minuta-livre').value.split('\n').forEach(l => {
+      l = l.trim(); if (!l) return;
+      html += /^CLÁUSULA\s+/i.test(l) ? `<h3>${l}</h3>` : l.startsWith('•') || l.startsWith('-') ? `<ul><li>${l.replace(/^[•\-]\s*/, '')}</li></ul>` : `<p>${l}</p>`;
     });
   }
 
-  // Assinaturas
-  const sigItems = document.querySelectorAll('#sigs-list .clause-item');
-  const sigsArr = [];
-  sigItems.forEach(item => {
+  const sigs = [];
+  document.querySelectorAll('#sigs-list .clause-item').forEach(item => {
     const inputs = item.querySelectorAll('input');
-    sigsArr.push({ name: inputs[0].value.trim(), role: inputs[1].value.trim() });
+    sigs.push({ name: inputs[0].value.trim(), role: inputs[1].value.trim() });
   });
-
-  if (sigsArr.length > 0) {
+  if (sigs.length) {
     html += `<div class="signatures-wrapper"><div class="signatures">`;
-    sigsArr.forEach(s => {
-      html += `<div class="sig-box">
-        <div class="sig-line"></div>
-        <div class="sig-name">${s.name}</div>
-        <div class="sig-role">${s.role}</div>
-      </div>`;
-    });
+    sigs.forEach(s => html += `<div class="sig-box"><div class="sig-line"></div><div class="sig-name">${s.name}</div><div class="sig-role">${s.role}</div></div>`);
     html += `</div></div>`;
   }
-
   return html;
 }
 
 // ═══════════════════════════════════════════════════
-// AUTOPAGINAÇÃO
+// BUILD CONTENT — OFÍCIO
+// ═══════════════════════════════════════════════════
+function buildOficioContent() {
+  const v = id => document.getElementById(id).value.trim();
+  let html = '';
+  html += `<div class="document-meta"><div class="doc-date">${v('of-data')}</div><div class="doc-id">DOC ID: ${v('of-docid')}</div></div>`;
+  html += `<p style="margin-bottom:6px;"><strong>Ofício nº ${v('of-numero')}</strong></p>`;
+  html += `<div style="margin:20px 0 30px;"><p><strong>${v('of-dest-nome')}</strong></p>`;
+  if (v('of-dest-cargo')) html += `<p>${v('of-dest-cargo')}</p>`;
+  if (v('of-dest-inst')) html += `<p>${v('of-dest-inst')}</p>`;
+  html += `</div>`;
+  if (v('of-assunto')) html += `<p style="margin-bottom:4px;"><strong>Assunto:</strong> ${v('of-assunto')}</p>`;
+  if (v('of-referencia')) html += `<p style="margin-bottom:20px;"><strong>Ref.:</strong> ${v('of-referencia')}</p>`;
+  const corpo = v('of-corpo');
+  if (corpo) corpo.split('\n').forEach(l => { l = l.trim(); html += l ? `<p>${l}</p>` : `<br>`; });
+  html += `<div style="margin-top:40px;"><p>${v('of-saudacao')}</p>`;
+  html += `<div class="signatures-wrapper"><div class="signatures"><div class="sig-box"><div class="sig-line"></div><div class="sig-name">${v('of-sig-nome')}</div><div class="sig-role">${v('of-sig-cargo')}</div><div class="sig-role" style="font-size:9px;color:#888;">${v('of-sig-inst')}</div></div></div></div></div>`;
+  return html;
+}
+
+// ═══════════════════════════════════════════════════
+// BUILD CONTENT — ORÇAMENTO
+// ═══════════════════════════════════════════════════
+function buildOrcamentoContent() {
+  const v = id => document.getElementById(id).value.trim();
+  let html = '';
+  html += `<div class="document-meta"><div class="doc-date">${v('orc-data')}</div><div class="doc-id">${v('orc-numero')}</div></div>`;
+  html += `<div class="doc-title">Proposta Comercial</div>`;
+  html += `<h3>PROPONENTE</h3><p><strong>DIRETRIX SOLUÇÕES CORPORATIVAS LTDA</strong>, CNPJ 45.529.299/0001-04, Av. André Araújo, 2721, Aleixo, Manaus/AM.</p>`;
+
+  if (v('orc-cli-nome')) {
+    html += `<h3>DESTINATÁRIO</h3><p><strong>${v('orc-cli-nome')}</strong>`;
+    if (v('orc-cli-doc')) html += `, CNPJ/CPF ${v('orc-cli-doc')}`;
+    if (v('orc-cli-end')) html += `, ${v('orc-cli-end')}`;
+    html += `.</p>`;
+    if (v('orc-cli-contato')) html += `<p>A/C: ${v('orc-cli-contato')}${v('orc-cli-email') ? ' — ' + v('orc-cli-email') : ''}</p>`;
+  }
+
+  html += `<h3>ITENS DA PROPOSTA</h3>`;
+  html += `<table style="width:100%;border-collapse:collapse;margin:12px 0 20px;">`;
+  html += `<tr style="background:#0A1F44;color:#fff;"><th style="padding:8px 10px;font-size:10px;letter-spacing:0.5px;text-transform:uppercase;text-align:left;">#</th><th style="padding:8px 10px;font-size:10px;text-align:left;text-transform:uppercase;">Descrição</th><th style="padding:8px 10px;font-size:10px;text-align:center;text-transform:uppercase;">Qtd</th><th style="padding:8px 10px;font-size:10px;text-align:right;text-transform:uppercase;">Valor Unit.</th><th style="padding:8px 10px;font-size:10px;text-align:right;text-transform:uppercase;">Subtotal</th></tr>`;
+
+  let total = 0;
+  document.querySelectorAll('#orc-items-list tr').forEach((row, i) => {
+    const desc = row.querySelectorAll('input')[0].value.trim();
+    const qtd = parseFloat(row.querySelector('.orc-qtd').value) || 0;
+    const val = parseFloat(row.querySelector('.orc-valor').value) || 0;
+    const sub = qtd * val; total += sub;
+    const bg = i % 2 === 0 ? '#f8fafc' : '#fff';
+    html += `<tr style="background:${bg};"><td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;color:#94a3b8;font-weight:600;">${i+1}</td><td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;">${desc}</td><td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:center;">${qtd}</td><td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:right;">${formatBRL(val)}</td><td style="padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:600;">${formatBRL(sub)}</td></tr>`;
+  });
+  html += `<tr style="background:#f0fdf7;"><td colspan="4" style="padding:10px;text-align:right;font-weight:800;font-size:13px;color:#0A1F44;">VALOR TOTAL</td><td style="padding:10px;text-align:right;font-weight:900;font-size:15px;color:#007A4E;">${formatBRL(total)}</td></tr></table>`;
+
+  html += `<p><strong>Validade:</strong> ${v('orc-validade')}</p>`;
+  if (v('orc-pagamento') || v('orc-prazo')) {
+    html += `<h3>CONDIÇÕES COMERCIAIS</h3>`;
+    if (v('orc-pagamento')) html += `<p><strong>Pagamento:</strong> ${v('orc-pagamento')}</p>`;
+    if (v('orc-prazo')) html += `<p><strong>Prazo:</strong> ${v('orc-prazo')}</p>`;
+  }
+  const inclui = v('orc-inclui'), exclui = v('orc-exclui');
+  if (inclui || exclui) {
+    html += `<h3>ESCOPO</h3>`;
+    if (inclui) { html += `<p><strong>Inclui:</strong></p><ul>`; inclui.split('\n').forEach(l => { if (l.trim()) html += `<li>${l.trim()}</li>`; }); html += `</ul>`; }
+    if (exclui) { html += `<p><strong>Não inclui:</strong></p><ul>`; exclui.split('\n').forEach(l => { if (l.trim()) html += `<li>${l.trim()}</li>`; }); html += `</ul>`; }
+  }
+  html += `<div class="signatures-wrapper"><div class="signatures"><div class="sig-box"><div class="sig-line"></div><div class="sig-name">${v('orc-resp-nome')}</div><div class="sig-role">${v('orc-resp-cargo')}</div><div class="sig-role" style="font-size:9px;color:#888;">${v('orc-resp-email')}</div></div></div></div>`;
+  return html;
+}
+
+// ═══════════════════════════════════════════════════
+// PÁGINA A4 TIMBRADA
 // ═══════════════════════════════════════════════════
 function createPageTemplate() {
   const page = document.createElement('div');
@@ -1144,82 +899,65 @@ function createPageTemplate() {
   page.innerHTML = `
     <div class="lh-header">
       <div class="lh-logo">DIRETRIX<span>.</span></div>
-      <div class="lh-info">
-        HEADQUARTERS: AV. ANDRÉ ARAÚJO, 2721<br>
-        BAIRRO ALEIXO • MANAUS/AM • 69.060-000<br>
-        CNPJ: 45.529.299/0001-04
-      </div>
+      <div class="lh-info">HEADQUARTERS: AV. ANDRÉ ARAÚJO, 2721<br>BAIRRO ALEIXO • MANAUS/AM • 69.060-000<br>CNPJ: 45.529.299/0001-04</div>
     </div>
     <div class="lh-stripe"></div>
-    <div class="lh-body">
-      <div class="lh-watermark">D</div>
-      <div class="content"></div>
-    </div>
-    <div class="lh-footer">
-      <span class="lh-footer-brand">DIRETRIX MASTERBRAND SYSTEM</span>
-      <span class="page-number"></span>
-    </div>
+    <div class="lh-body"><div class="lh-watermark">D</div><div class="content"></div></div>
+    <div class="lh-footer"><span class="lh-footer-brand">DIRETRIX MASTERBRAND SYSTEM</span><span class="page-number"></span></div>
   `;
   return page;
 }
 
+// ═══════════════════════════════════════════════════
+// AUTOPAGINAÇÃO
+// ═══════════════════════════════════════════════════
 async function autoPaginate() {
   await document.fonts.ready;
-
-  const source    = document.getElementById('source-content');
+  const source = document.getElementById('source-content');
   const container = document.getElementById('documento-completo');
   container.innerHTML = '';
 
-  let pageNum      = 1;
-  let currentPage  = createPageTemplate();
+  let pageNum = 1;
+  let currentPage = createPageTemplate();
   container.appendChild(currentPage);
+  let contentBox = currentPage.querySelector('.content');
+  const maxH = 1123 - 30 - 5 - 44 - 90 - 50;
 
-  let currentBody  = currentPage.querySelector('.lh-body');
-  let contentBox   = currentPage.querySelector('.content');
-
-  // Limite seguro: altura do body menos padding inferior (90px)
-  const maxBodyHeight = 1123 - 30 - 5 - 44 - 90 - 50; // header + stripe + bodyPadTop + bodyPadBottom + footer
-
-  const elements = Array.from(source.children);
-
-  for (const el of elements) {
+  for (const el of Array.from(source.children)) {
     const clone = el.cloneNode(true);
     contentBox.appendChild(clone);
-
-    // Força reflow antes de medir
     await new Promise(r => requestAnimationFrame(r));
 
-    if (contentBox.scrollHeight > maxBodyHeight) {
+    if (contentBox.scrollHeight > maxH) {
       contentBox.removeChild(clone);
       pageNum++;
       currentPage = createPageTemplate();
       container.appendChild(currentPage);
-      currentBody = currentPage.querySelector('.lh-body');
-      contentBox  = currentPage.querySelector('.content');
+      contentBox = currentPage.querySelector('.content');
       contentBox.appendChild(clone);
     }
   }
 
-  // Numerar rodapés
-  const footers = container.querySelectorAll('.page-number');
-  footers.forEach((footer, i) => {
-    footer.textContent = i === footers.length - 1
-      ? `Página ${i + 1} de ${pageNum} • Desenvolvido por MAZARI CORP`
-      : `Página ${i + 1} de ${pageNum} • Documento Oficial`;
+  container.querySelectorAll('.page-number').forEach((f, i) => {
+    f.textContent = i === pageNum - 1
+      ? `Página ${i+1} de ${pageNum} • Desenvolvido por MAZARI CORP`
+      : `Página ${i+1} de ${pageNum} • Documento Oficial`;
   });
 }
 
 // ═══════════════════════════════════════════════════
-// GERAR PREVIEW
+// PREVIEW
 // ═══════════════════════════════════════════════════
-async function gerarPreview() {
+async function gerarPreview(tipo) {
+  currentDocType = tipo || currentDocType;
   const sourceEl = document.getElementById('source-content');
-  sourceEl.innerHTML = buildContent();
 
-  // Trocar para a view de preview
+  if (currentDocType === 'contrato') sourceEl.innerHTML = buildContractContent();
+  else if (currentDocType === 'oficio') sourceEl.innerHTML = buildOficioContent();
+  else if (currentDocType === 'orcamento') sourceEl.innerHTML = buildOrcamentoContent();
+
   document.getElementById('view-editor').classList.remove('active');
   document.getElementById('view-preview').classList.add('active');
-
   await autoPaginate();
 }
 
@@ -1229,58 +967,40 @@ function voltarEditor() {
 }
 
 // ═══════════════════════════════════════════════════
-// GERAÇÃO DE PDF — PÁGINA POR PÁGINA (SEM CORTES)
+// GERAÇÃO DE PDF
 // ═══════════════════════════════════════════════════
 async function gerarPDF() {
   await document.fonts.ready;
-
   const btn = document.getElementById('btn-pdf');
   const overlay = document.getElementById('loading-overlay');
-
   btn.disabled = true;
   overlay.classList.add('visible');
-
-  // Aplica classe de exportação (remove sombras, topbar, etc.)
   document.body.classList.add('exporting');
   window.scrollTo(0, 0);
 
   try {
     const { jsPDF } = window.jspdf;
-
-    // Dimensões exatas A4 em pixels a 96 DPI
     const W = 794, H = 1123;
-
-    const pdf   = new jsPDF({ unit: 'px', format: [W, H], orientation: 'portrait' });
+    const pdf = new jsPDF({ unit: 'px', format: [W, H], orientation: 'portrait' });
     const pages = document.querySelectorAll('.page-a4');
 
     for (let i = 0; i < pages.length; i++) {
-      // Atualiza o texto de progresso
-      document.querySelector('.loading-sub').textContent =
-        `Renderizando página ${i + 1} de ${pages.length}...`;
-
-      const canvas = await html2canvas(pages[i], {
-        scale:       2,          // Alta resolução
-        useCORS:     true,
-        logging:     false,
-        width:       W,
-        height:      H,
-        windowWidth: W,
-        scrollX:     0,
-        scrollY:     -window.scrollY
-      });
-
-      const imgData = canvas.toDataURL('image/jpeg', 0.97);
-
+      document.querySelector('.loading-sub').textContent = `Renderizando página ${i+1} de ${pages.length}...`;
+      const canvas = await html2canvas(pages[i], { scale: 2, useCORS: true, logging: false, width: W, height: H, windowWidth: W, scrollX: 0, scrollY: -window.scrollY });
+      const img = canvas.toDataURL('image/jpeg', 0.97);
       if (i > 0) pdf.addPage([W, H], 'portrait');
-      pdf.addImage(imgData, 'JPEG', 0, 0, W, H);
+      pdf.addImage(img, 'JPEG', 0, 0, W, H);
     }
 
-    const filename = `Contrato_DIRETRIX_${document.getElementById('f-ctado-nome').value.split(' ')[0]}_${new Date().getFullYear()}.pdf`;
-    pdf.save(filename);
+    let filename;
+    if (currentDocType === 'oficio') filename = `Oficio_DIRETRIX_${document.getElementById('of-numero').value.replace(/\//g,'-')}.pdf`;
+    else if (currentDocType === 'orcamento') filename = `Orcamento_DIRETRIX_${document.getElementById('orc-numero').value.replace(/\//g,'-')}.pdf`;
+    else filename = `Contrato_DIRETRIX_${new Date().getFullYear()}.pdf`;
 
+    pdf.save(filename);
   } catch (err) {
     console.error('Erro ao gerar PDF:', err);
-    alert('Erro ao gerar o PDF. Verifique o console para detalhes.');
+    alert('Erro ao gerar o PDF.');
   } finally {
     document.body.classList.remove('exporting');
     btn.disabled = false;
@@ -1288,6 +1008,14 @@ async function gerarPDF() {
     document.querySelector('.loading-sub').textContent = 'Renderizando páginas em alta resolução';
   }
 }
+
+// ═══════════════════════════════════════════════════
+// INICIALIZAÇÃO
+// ═══════════════════════════════════════════════════
+window.addEventListener('load', () => {
+  loadContractTemplate();
+  loadOrcTemplate();
+});
 </script>
 
 </body>
