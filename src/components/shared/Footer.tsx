@@ -1,38 +1,21 @@
 export function Footer() {
   return (
     <footer className="diretrix-footer">
-      <div className="nav-logo" style={{ fontSize: 32, marginBottom: 20 }}>
+      <div className="diretrix-footer-logo">
         DIRETRIX<span>.</span>
       </div>
-      <p
-        style={{
-          color: 'var(--texto)',
-          fontSize: 15,
-          letterSpacing: 4,
-          textTransform: 'uppercase',
-          fontWeight: 300,
-        }}
-      >
-        Defining Future Standards
-      </p>
 
-      <div
-        style={{
-          marginTop: 60,
-          paddingTop: 50,
-          borderTop: '1px solid rgba(255,255,255,0.05)',
-        }}
-      >
-        <p
-          style={{
-            fontSize: 11,
-            color: 'rgba(255,255,255,0.3)',
-            letterSpacing: 2,
-            textTransform: 'uppercase',
-            fontWeight: 600,
-          }}
-        >
-          © 2026 DIRETRIX • Consultoria em Tecnologia da Informação • Todos os direitos
+      <p className="diretrix-footer-tagline">Não vendemos esperança. Vendemos critério.</p>
+
+      <div className="diretrix-footer-bottom">
+        <div className="diretrix-footer-meta">
+          <span>Diretrix Soluções Corporativas Ltda</span>
+          <span>CNPJ 45.529.299/0001-04</span>
+          <span>Av. André Araújo, 2721 · Aleixo · Manaus/AM</span>
+          <a href="mailto:corporativo@diretrix.com.br">corporativo@diretrix.com.br</a>
+        </div>
+        <p className="diretrix-footer-copy">
+          © 2026 DIRETRIX · Consultoria em Tecnologia da Informação · Todos os direitos
           reservados
         </p>
       </div>
