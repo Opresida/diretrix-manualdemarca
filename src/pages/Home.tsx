@@ -6,6 +6,8 @@ import { MetodoVisivel } from '@/components/institutional/sections/MetodoVisivel
 import { Territorio } from '@/components/institutional/sections/Territorio'
 import { LiderancaVisivel } from '@/components/institutional/sections/LiderancaVisivel'
 import { Equipe } from '@/components/institutional/sections/Equipe'
+import { Depoimentos } from '@/components/institutional/sections/Depoimentos'
+import { FAQ } from '@/components/institutional/sections/FAQ'
 import { DiagnosticoCTA } from '@/components/institutional/sections/DiagnosticoCTA'
 import { Footer } from '@/components/shared/Footer'
 import { useReveal } from '@/hooks/useReveal'
@@ -25,6 +27,8 @@ export default function Home() {
         <Territorio />
         <LiderancaVisivel />
         <Equipe />
+        <Depoimentos />
+        <FAQ />
         <DiagnosticoCTA />
       </main>
       <Footer />
