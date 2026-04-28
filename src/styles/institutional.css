@@ -6,8 +6,81 @@
 ══════════════════════════════════════════ */
 
 /* ──────────────────────────────────────────
-   NAV INSTITUCIONAL — diferente do brandbook
-   (links navegam por seções E por páginas internas)
+   PRIMITIVOS COMPARTILHADOS NO INSTITUCIONAL
+────────────────────────────────────────── */
+.playfair-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--verde);
+}
+
+.inst-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: 24px;
+}
+.inst-section-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--verde), transparent);
+}
+
+/* Botões institucionais */
+.inst-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+.inst-btn-primary {
+  background: var(--verde);
+  color: var(--preto);
+  border: 1px solid var(--verde);
+  box-shadow: 0 0 28px rgba(0, 168, 107, 0.25);
+}
+.inst-btn-primary:hover {
+  background: var(--verde-light);
+  border-color: var(--verde-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(0, 168, 107, 0.45);
+}
+.inst-btn-ghost {
+  background: transparent;
+  color: var(--branco);
+  border: 1px solid var(--borda);
+}
+.inst-btn-ghost:hover {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+.inst-btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.inst-btn-primary:hover .inst-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ──────────────────────────────────────────
+   NAV INSTITUCIONAL
 ────────────────────────────────────────── */
 .inst-nav {
   position: fixed;
@@ -91,10 +164,9 @@
   transform: translateY(-1px);
 }
 
-/* ──────────────────────────────────────────
-   HERO SHELL (Fase 4 — placeholder)
-   Será expandido na Fase 5 com tese editorial completa.
-────────────────────────────────────────── */
+/* ══════════════════════════════════════════
+   01 · HERO — Tese filosófica
+══════════════════════════════════════════ */
 .inst-hero {
   min-height: 100vh;
   display: flex;
@@ -110,7 +182,9 @@
 }
 
 .inst-hero-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'Inter', monospace;
   font-size: 11px;
   font-weight: 600;
@@ -122,6 +196,14 @@
   border: 1px solid var(--borda-verde);
   border-radius: 4px;
   background: rgba(0, 168, 107, 0.04);
+}
+.inst-hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow: 0 0 8px var(--verde);
+  animation: pulse 2s infinite;
 }
 
 .inst-hero-title {
@@ -149,33 +231,315 @@
   color: var(--texto-2);
   max-width: 56ch;
   font-weight: 300;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 
-.inst-hero-shell-note {
-  display: inline-flex;
-  align-items: center;
+.inst-hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.inst-hero-foot {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+  max-width: 720px;
+  padding-top: 32px;
+  border-top: 1px solid var(--borda);
+}
+.inst-hero-foot-item {
+  display: flex;
+  align-items: baseline;
   gap: 12px;
-  padding: 14px 20px;
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+}
+.inst-hero-foot-num {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--verde);
+  letter-spacing: 0.2em;
+}
+.inst-hero-foot-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--texto-2);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ══════════════════════════════════════════
+   02 · MANIFESTO — Editorial bipartido
+══════════════════════════════════════════ */
+.inst-manifesto {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.inst-manifesto-aside {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+.inst-manifesto-aside-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--branco);
+  margin-bottom: 40px;
+}
+
+.inst-manifesto-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 32px;
+  border-top: 1px solid var(--borda);
+}
+.inst-manifesto-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.inst-manifesto-meta-key {
+  text-transform: uppercase;
+  color: var(--texto);
+  font-weight: 500;
+}
+.inst-manifesto-meta-val {
+  color: var(--branco);
+  font-weight: 600;
+  text-align: right;
+}
+
+.inst-manifesto-body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.85;
+  color: var(--texto-2);
+  font-weight: 300;
+}
+.inst-manifesto-body p {
+  margin-bottom: 28px;
+}
+.inst-manifesto-body p:first-child::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 700;
+  font-style: italic;
+  float: left;
+  line-height: 0.85;
+  margin: 8px 14px 0 0;
+  color: var(--verde);
+}
+.inst-manifesto-body em {
+  color: var(--branco);
+  font-style: normal;
+  font-weight: 500;
+  background: linear-gradient(transparent 60%, rgba(0, 168, 107, 0.18) 60%);
+  padding: 0 2px;
+}
+
+.inst-manifesto-pull {
+  margin-top: 48px;
+  padding: 32px 0 0 32px;
+  border-left: 3px solid var(--verde);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--branco);
+}
+.inst-manifesto-pull-accent {
+  color: var(--verde);
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════
+   03 · PILARES — Diagrama vetorial conectado
+══════════════════════════════════════════ */
+.inst-pilares {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 140px 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.inst-pilares-head {
+  max-width: 760px;
+  margin-bottom: 80px;
+}
+.inst-pilares-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--branco);
+  margin-bottom: 24px;
+}
+.inst-pilares-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+  max-width: 60ch;
+}
+
+.inst-pilares-diagram {
+  position: relative;
+  padding-top: 40px;
+}
+
+.inst-pilares-flow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+}
+
+.inst-pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.inst-pilar {
+  position: relative;
+  padding: 40px 32px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+}
+.inst-pilar:hover {
+  transform: translateY(-6px);
+  border-color: var(--borda-verde);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 168, 107, 0.04) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.inst-pilar:hover .inst-pilar-link {
+  color: var(--verde);
+}
+
+.inst-pilar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--borda);
+}
+.inst-pilar-num {
   font-family: 'Inter', monospace;
   font-size: 12px;
-  color: var(--texto);
-  letter-spacing: 0.05em;
-}
-.inst-hero-shell-note a {
+  font-weight: 700;
+  letter-spacing: 0.2em;
   color: var(--verde);
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
-.inst-hero-shell-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-  flex-shrink: 0;
+.inst-pilar-ancora {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto);
+  padding: 4px 10px;
+  border: 1px solid var(--borda);
+  border-radius: 100px;
+}
+
+.inst-pilar-manchete {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(20px, 1.6vw, 26px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--branco);
+  margin-bottom: 20px;
+  min-height: 3em;
+}
+
+.inst-pilar-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.inst-pilar-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  text-decoration: none;
+  transition: color 0.3s, gap 0.3s;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+}
+.inst-pilar-link:hover {
+  gap: 14px;
+}
+
+.inst-pilares-legenda {
+  margin-top: 60px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 24px;
+  border: 1px solid var(--borda);
+  border-radius: 100px;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--branco);
+  background: rgba(0, 168, 107, 0.03);
+}
+.inst-pilares-legenda-arrow {
+  color: var(--verde);
+  font-weight: 700;
 }
 
 /* ──────────────────────────────────────────
@@ -188,7 +552,31 @@
   .inst-nav-links {
     display: none;
   }
+
   .inst-hero {
-    padding: 140px 24px 100px;
+    padding: 140px 24px 80px;
+  }
+  .inst-hero-foot {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .inst-manifesto {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 80px 24px;
+  }
+  .inst-manifesto-aside {
+    position: static;
+  }
+
+  .inst-pilares {
+    padding: 80px 24px;
+  }
+  .inst-pilares-grid {
+    grid-template-columns: 1fr;
+  }
+  .inst-pilares-flow {
+    display: none;
   }
 }
