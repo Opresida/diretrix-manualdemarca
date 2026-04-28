@@ -1,0 +1,98 @@
+/* ══════════════════════════════════════════
+   DIRETRIX — TOKENS COMPARTILHADOS
+   DNA cromático, tipográfico e mecânica de revelação.
+   Importado em ambos os contextos (brandbook + institucional).
+══════════════════════════════════════════ */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis institucionais */
+:root {
+  --verde: #00a86b;
+  --verde-dark: #007a4e;
+  --verde-light: #00d688;
+  --verde-glow: rgba(0, 168, 107, 0.25);
+  --azul: #0a1f44;
+  --azul-mid: #0d2658;
+  --preto: #05070d;
+  --cinza-1: #0e1017;
+  --cinza-2: #161920;
+  --cinza-3: #1e2128;
+  --cinza-4: #252830;
+  --borda: rgba(255, 255, 255, 0.06);
+  --borda-verde: rgba(0, 168, 107, 0.3);
+  --texto: #8a909e;
+  --texto-2: #c2c8d4;
+  --branco: #ffffff;
+  --gold: #d4af37;
+  --gold-dark: #997a00;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--preto);
+  color: var(--branco);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════
+   AMBIENTE — TEXTURA & GLOW (compartilhado)
+══════════════════════════════════════════ */
+.bg-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 10%, rgba(0, 168, 107, 0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 85% 90%, rgba(10, 31, 68, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, var(--preto) 30%, transparent 100%);
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════
+   ANIMAÇÃO REVEAL (compartilhada)
+══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   FOOTER (compartilhado entre brandbook e institucional)
+══════════════════════════════════════════ */
+.diretrix-footer {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px 60px;
+  text-align: center;
+  border-top: 1px solid var(--borda);
+  margin-top: 60px;
+  background: rgba(5, 7, 13, 0.8);
+}

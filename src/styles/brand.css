@@ -1,73 +1,11 @@
 /* ══════════════════════════════════════════
-   RESET & VARIÁVEIS ULTRA PREMIUM
+   DIRETRIX — BRANDBOOK STYLES
+   Específico do manual de marca em /brandbook.
+   Não importar no site institucional.
 ══════════════════════════════════════════ */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --verde: #00a86b;
-  --verde-dark: #007a4e;
-  --verde-light: #00d688;
-  --verde-glow: rgba(0, 168, 107, 0.25);
-  --azul: #0a1f44;
-  --azul-mid: #0d2658;
-  --preto: #05070d;
-  --cinza-1: #0e1017;
-  --cinza-2: #161920;
-  --cinza-3: #1e2128;
-  --cinza-4: #252830;
-  --borda: rgba(255, 255, 255, 0.06);
-  --borda-verde: rgba(0, 168, 107, 0.3);
-  --texto: #8a909e;
-  --texto-2: #c2c8d4;
-  --branco: #ffffff;
-  --gold: #d4af37;
-  --gold-dark: #997a00;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--preto);
-  color: var(--branco);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
 
 /* ══════════════════════════════════════════
-   TEXTURA & AMBIENTE (NOISE & GLOW)
-══════════════════════════════════════════ */
-.bg-ambient {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 15% 10%, rgba(0, 168, 107, 0.09) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 70% at 85% 90%, rgba(10, 31, 68, 0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, var(--preto) 30%, transparent 100%);
-  pointer-events: none;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* ══════════════════════════════════════════
-   NAVEGAÇÃO EXECUTIVA
+   NAVEGAÇÃO BRANDBOOK
 ══════════════════════════════════════════ */
 nav.diretrix-nav {
   position: fixed;
@@ -134,7 +72,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   HERO MONUMENTAL
+   HERO MONUMENTAL — BRANDBOOK
 ══════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
@@ -209,7 +147,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   ESTRUTURA BASE (GRIDS & SECÇÕES)
+   ESTRUTURA BASE BRANDBOOK
 ══════════════════════════════════════════ */
 .section {
   max-width: 1200px;
@@ -285,7 +223,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   CROMIA (PALETA DE CORES)
+   CROMIA (PALETA)
 ══════════════════════════════════════════ */
 .swatch {
   border-radius: 14px;
@@ -331,7 +269,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   TIPOGRAFIA COMPLETA
+   TIPOGRAFIA (BRANDBOOK)
 ══════════════════════════════════════════ */
 .type-block {
   border: 1px solid var(--borda);
@@ -415,7 +353,6 @@ nav.diretrix-nav {
   padding: 40px 0;
 }
 
-/* Pasta Executiva */
 .folder {
   width: 440px;
   height: 580px;
@@ -467,7 +404,6 @@ nav.diretrix-nav {
   font-weight: 700;
 }
 
-/* Papel Timbrado + Marca de Água */
 .letterhead {
   width: 440px;
   height: 580px;
@@ -513,7 +449,6 @@ nav.diretrix-nav {
   pointer-events: none;
 }
 
-/* Envelope Premium + Wax Seal */
 .envelope {
   width: 500px;
   height: 240px;
@@ -581,7 +516,6 @@ nav.diretrix-nav {
   font-weight: 600;
 }
 
-/* Cartão de Nota / Thank You Card */
 .note-card {
   width: 220px;
   height: 300px;
@@ -627,7 +561,6 @@ nav.diretrix-nav {
   margin-top: 20px;
 }
 
-/* Caderneta / Notepad Executivo */
 .notepad {
   width: 260px;
   height: 360px;
@@ -666,7 +599,6 @@ nav.diretrix-nav {
   z-index: -1;
 }
 
-/* Cartões de Visita (3D Flipping style) */
 .bcard {
   width: 380px;
   height: 212px;
@@ -733,7 +665,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   DIGITAL (ASSINATURA DE EMAIL)
+   DIGITAL — ASSINATURA DE EMAIL
 ══════════════════════════════════════════ */
 .email-sig-wrapper {
   background: #fff;
@@ -791,7 +723,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   TOUCHPOINTS LUXURY (UI Cards)
+   TOUCHPOINTS LUXURY
 ══════════════════════════════════════════ */
 .luxury-icon {
   width: 56px;
@@ -932,30 +864,7 @@ nav.diretrix-nav {
 }
 
 /* ══════════════════════════════════════════
-   ANIMAÇÃO REVEAL & FOOTER
-══════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.diretrix-footer {
-  position: relative;
-  z-index: 1;
-  padding: 100px 40px 60px;
-  text-align: center;
-  border-top: 1px solid var(--borda);
-  margin-top: 60px;
-  background: rgba(5, 7, 13, 0.8);
-}
-
-/* ══════════════════════════════════════════
-   RESPONSIVO
+   RESPONSIVO BRANDBOOK
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
   nav.diretrix-nav {
