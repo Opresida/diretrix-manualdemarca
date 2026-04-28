@@ -119,6 +119,14 @@ body::after {
   letter-spacing: 0.01em;
 }
 
+/* Token utilitário compartilhado: accent Playfair italic verde */
+.playfair-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--verde);
+}
+
 .diretrix-footer-bottom {
   max-width: 800px;
   margin: 0 auto;
@@ -268,5 +276,235 @@ body::after {
   }
   .wa-fab-tooltip {
     display: none;
+  }
+}
+
+/* ══════════════════════════════════════════
+   LOADING SCREEN (4s · sobreposto a tudo)
+══════════════════════════════════════════ */
+.dx-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0, 168, 107, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, var(--preto) 30%, var(--cinza-1) 100%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.dx-loader.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Noise sutil (replica o tratamento do site) */
+.dx-loader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Hairline lime no topo (acento institucional) */
+.dx-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--verde) 50%, transparent);
+  box-shadow: 0 0 24px rgba(0, 168, 107, 0.6);
+}
+
+.dx-loader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 0 24px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Logo monumental */
+.dx-loader-logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -0.04em;
+  color: var(--branco);
+  line-height: 1;
+  animation: dx-loader-logo-fade 1.2s ease-out;
+}
+.dx-loader-logo-dot {
+  color: var(--verde);
+  text-shadow: 0 0 32px rgba(0, 168, 107, 0.7);
+  animation: dx-loader-dot-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dx-loader-logo-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes dx-loader-dot-pulse {
+  0%, 100% {
+    text-shadow: 0 0 32px rgba(0, 168, 107, 0.7);
+  }
+  50% {
+    text-shadow: 0 0 48px rgba(0, 168, 107, 1), 0 0 80px rgba(0, 168, 107, 0.4);
+  }
+}
+
+/* Spinner — 2 anéis concêntricos + core pulsante */
+.dx-spinner {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dx-spinner-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.dx-spinner-ring--outer {
+  inset: 0;
+  border-top-color: var(--verde);
+  border-right-color: var(--verde);
+  animation: dx-spin 1.2s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 168, 107, 0.25);
+}
+
+.dx-spinner-ring--inner {
+  inset: 12px;
+  border-bottom-color: var(--gold);
+  border-left-color: var(--gold);
+  animation: dx-spin 0.9s linear infinite reverse;
+}
+
+.dx-spinner-core {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow:
+    0 0 0 3px rgba(0, 168, 107, 0.18),
+    0 0 16px var(--verde);
+  animation: dx-loader-dot-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status mono caps com cursor piscante */
+.dx-loader-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--verde);
+  min-height: 20px;
+}
+.dx-loader-status-text {
+  transition: opacity 0.3s ease;
+}
+.dx-loader-status-cursor {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--verde);
+  animation: dx-loader-cursor 0.9s steps(2, end) infinite;
+}
+@keyframes dx-loader-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Tagline assinatura */
+.dx-loader-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 300;
+  color: var(--texto-2);
+  text-align: center;
+  line-height: 1.5;
+  max-width: 32ch;
+  letter-spacing: 0.005em;
+  animation: dx-loader-tagline-fade 1.6s ease-out;
+}
+@keyframes dx-loader-tagline-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Barra de progresso na base */
+.dx-loader-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+.dx-loader-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--verde) 30%, var(--verde) 70%, transparent);
+  box-shadow: 0 0 16px rgba(0, 168, 107, 0.5);
+  transform-origin: left center;
+  animation: dx-loader-progress-fill linear forwards;
+}
+@keyframes dx-loader-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .dx-loader-content {
+    gap: 28px;
+  }
+  .dx-spinner {
+    width: 60px;
+    height: 60px;
+  }
+  .dx-spinner-ring--inner {
+    inset: 10px;
   }
 }

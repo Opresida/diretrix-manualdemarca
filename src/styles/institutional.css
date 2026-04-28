@@ -7,14 +7,8 @@
 
 /* ──────────────────────────────────────────
    PRIMITIVOS COMPARTILHADOS NO INSTITUCIONAL
+   (.playfair-italic agora vive em tokens.css)
 ────────────────────────────────────────── */
-.playfair-italic {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 700;
-  color: var(--verde);
-}
-
 .inst-section-label {
   display: inline-flex;
   align-items: center;

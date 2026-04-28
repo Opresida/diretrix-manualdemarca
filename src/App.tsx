@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Route, Switch } from 'wouter'
 import Home from './pages/Home'
 import Brandbook from './pages/Brandbook'
@@ -5,10 +6,14 @@ import ConsultoriaTI from './pages/ConsultoriaTI'
 import TreinamentosProfissionais from './pages/TreinamentosProfissionais'
 import TreinamentosInformatica from './pages/TreinamentosInformatica'
 import { WhatsAppFAB } from './components/shared/WhatsAppFAB'
+import { LoadingScreen } from './components/shared/LoadingScreen'
 
 export default function App() {
+  const [loading, setLoading] = useState(true)
+
   return (
     <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/brandbook" component={Brandbook} />
