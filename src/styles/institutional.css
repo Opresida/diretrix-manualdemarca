@@ -880,6 +880,36 @@
   line-height: 1;
 }
 
+/* Foto real da diretora — substitui o avatar tipográfico */
+.inst-lideranca-avatar-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  z-index: 1;
+  /* Treatment editorial: leve duotone que harmoniza com o tema dark */
+  filter: contrast(1.05) saturate(0.95);
+  transition: filter 0.5s ease;
+}
+/* Vinheta sutil no canto inferior pra integrar a foto ao bg do site */
+.inst-lideranca-avatar-frame:has(.inst-lideranca-avatar-photo)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(5, 7, 13, 0.55) 100%),
+    radial-gradient(ellipse at top, transparent 60%, rgba(0, 168, 107, 0.08));
+  z-index: 2;
+  pointer-events: none;
+}
+/* O frame com foto mantém a borda dashed na frente da imagem */
+.inst-lideranca-avatar-frame:has(.inst-lideranca-avatar-photo)::before {
+  z-index: 3;
+}
+
 .inst-lideranca-avatar-stamp {
   display: flex;
   align-items: center;

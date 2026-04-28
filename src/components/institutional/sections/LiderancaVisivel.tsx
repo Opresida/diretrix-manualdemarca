@@ -3,14 +3,16 @@ export function LiderancaVisivel() {
     <section id="lideranca" className="inst-lideranca">
       <div className="inst-lideranca-grid">
         <div className="inst-lideranca-portrait">
-          {/* Avatar tipográfico — não foto. Iniciais em Playfair italic
-              numa moldura editorial. Pode ser substituído por foto real
-              quando disponível. */}
-          <div className="inst-lideranca-avatar" aria-hidden="true">
+          <div className="inst-lideranca-avatar">
             <div className="inst-lideranca-avatar-frame">
-              <span className="inst-lideranca-avatar-initials">A</span>
+              <img
+                src="https://i.imgur.com/ULB5d7Z.jpeg"
+                alt="Andressa Silva de Lima, Diretora Executiva da Diretrix Soluções Corporativas"
+                loading="lazy"
+                className="inst-lideranca-avatar-photo"
+              />
             </div>
-            <div className="inst-lideranca-avatar-stamp">
+            <div className="inst-lideranca-avatar-stamp" aria-hidden="true">
               <span>Pela Diretora</span>
               <span className="inst-lideranca-avatar-stamp-line" />
               <span>Manaus · 2026</span>
