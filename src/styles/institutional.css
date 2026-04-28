@@ -2294,3 +2294,300 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ══════════════════════════════════════════
+   EQUIPE — Carrossel infinito de pesquisadores
+══════════════════════════════════════════ */
+.equipe-section {
+  position: relative;
+  padding: 140px 0 120px;
+  background: var(--preto);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Glows decorativos */
+.equipe-glow {
+  position: absolute;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+.equipe-glow--top {
+  top: 0;
+  right: -10%;
+  background: var(--verde);
+}
+.equipe-glow--bottom {
+  bottom: 5%;
+  left: -10%;
+  background: var(--gold);
+  opacity: 0.04;
+  width: 500px;
+  height: 500px;
+  filter: blur(110px);
+}
+
+/* Header */
+.equipe-head {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto 80px;
+  padding: 0 56px;
+}
+.equipe-titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 3.4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--branco);
+  margin: 12px 0 24px;
+}
+.equipe-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+  max-width: 60ch;
+}
+
+/* Track wrapper + fades laterais */
+.equipe-track-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 24px 0;
+  z-index: 2;
+}
+.equipe-fade {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+.equipe-fade--left {
+  left: 0;
+  background: linear-gradient(to right, var(--preto) 0%, transparent 100%);
+}
+.equipe-fade--right {
+  right: 0;
+  background: linear-gradient(to left, var(--preto) 0%, transparent 100%);
+}
+
+/* Track */
+.equipe-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 22px;
+  width: max-content;
+  padding: 8px 16px;
+  animation: equipe-scroll 60s linear infinite;
+}
+
+@keyframes equipe-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Card */
+.equipe-card {
+  width: 320px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.equipe-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+.equipe-avatar-initials {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.equipe-nome {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--branco);
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: -0.01em;
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+}
+
+.equipe-cargo {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+  min-height: 2.2em;
+  display: flex;
+  align-items: center;
+}
+
+.equipe-bio {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--texto);
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5.2em;
+}
+
+.equipe-lattes-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.equipe-lattes-key {
+  font-family: 'Inter', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto);
+}
+.equipe-lattes-val {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--branco);
+}
+
+/* CTAs */
+.equipe-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.25s, box-shadow 0.25s;
+  margin-top: auto;
+}
+.equipe-cta--link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+.equipe-cta--soft {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed currentColor;
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.equipe-cta--vazia {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  color: var(--texto);
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Footer da seção */
+.equipe-foot {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 60px auto 0;
+  padding: 0 56px;
+  text-align: center;
+}
+.equipe-foot-text {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--texto);
+  line-height: 1.8;
+}
+.equipe-foot-text a {
+  color: var(--verde);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.equipe-foot-text a:hover {
+  color: var(--verde-light);
+}
+
+@media (max-width: 700px) {
+  .equipe-section {
+    padding: 80px 0;
+  }
+  .equipe-head,
+  .equipe-foot {
+    padding: 0 24px;
+  }
+  .equipe-card {
+    width: 280px;
+    padding: 24px 20px;
+  }
+  .equipe-fade {
+    width: 80px;
+  }
+}
