@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIRETRIX — The Ultimate Masterbrand System</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,900&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════
+   RESET & VARIÁVEIS ULTRA PREMIUM
+══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --verde:        #00A86B;
+  --verde-dark:   #007A4E;
+  --verde-light:  #00D688;
+  --verde-glow:   rgba(0,168,107,0.25);
+  --azul:         #0A1F44;
+  --azul-mid:     #0D2658;
+  --preto:        #05070D;
+  --cinza-1:      #0E1017;
+  --cinza-2:      #161920;
+  --cinza-3:      #1E2128;
+  --cinza-4:      #252830;
+  --borda:        rgba(255,255,255,0.06);
+  --borda-verde:  rgba(0,168,107,0.3);
+  --texto:        #8A909E;
+  --texto-2:      #C2C8D4;
+  --branco:       #FFFFFF;
+  --gold:         #D4AF37;
+  --gold-dark:    #997A00;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--preto);
+  color: var(--branco);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════
+   TEXTURA & AMBIENTE (NOISE & GLOW)
+══════════════════════════════════════════ */
+.bg-ambient {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 10%, rgba(0,168,107,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 85% 90%, rgba(10,31,68,0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, var(--preto) 30%, transparent 100%);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════
+   NAVEGAÇÃO EXECUTIVA
+══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 72px;
+  background: rgba(5,7,13,0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--borda);
+}
+
+.nav-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -1px; }
+.nav-logo span { color: var(--verde); }
+
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--texto); text-decoration: none;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a:hover { color: var(--branco); }
+
+.nav-cta {
+  padding: 9px 22px; background: var(--verde); color: var(--preto);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; border-radius: 100px; text-decoration: none;
+  transition: all 0.3s; box-shadow: 0 0 20px rgba(0,168,107,0.3);
+}
+.nav-cta:hover { background: var(--branco); box-shadow: 0 0 30px rgba(255,255,255,0.4); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   HERO MONUMENTAL
+══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 160px 24px 120px; position: relative; z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(0,168,107,0.07); border: 1px solid rgba(0,168,107,0.22);
+  border-radius: 100px; padding: 8px 22px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--verde); margin-bottom: 50px;
+}
+
+.hero-title {
+  font-family: 'Poppins', sans-serif; font-size: clamp(48px, 9vw, 110px);
+  font-weight: 900; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 28px;
+}
+.hero-title .green { color: var(--verde); text-shadow: 0 0 80px rgba(0,168,107,0.5); }
+
+.hero-sub {
+  font-size: clamp(12px, 1.5vw, 16px); color: var(--texto);
+  letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 28px;
+}
+
+.hero-desc {
+  max-width: 580px; font-size: 16px; line-height: 1.85;
+  color: var(--texto-2); margin: 0 auto 60px; font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   ESTRUTURA BASE (GRIDS & SECÇÕES)
+══════════════════════════════════════════ */
+.section { max-width: 1200px; margin: 0 auto; padding: 110px 40px; position: relative; z-index: 1; }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--verde); margin-bottom: 18px;
+}
+.section-label::before { content: ""; width: 36px; height: 1px; background: linear-gradient(90deg, var(--verde), transparent); }
+
+.section-title { font-family: 'Poppins', sans-serif; font-size: clamp(30px, 4vw, 52px); font-weight: 800; margin-bottom: 18px; line-height: 1.1; }
+.section-desc { font-size: 15px; line-height: 1.8; color: var(--texto-2); max-width: 650px; margin-bottom: 60px; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.card {
+  background: rgba(255,255,255,0.02); border: 1px solid var(--borda);
+  border-radius: 18px; padding: 40px 34px; transition: all 0.45s cubic-bezier(0.23,1,0.32,1);
+  position: relative; overflow: hidden;
+}
+.card:hover { transform: translateY(-7px); border-color: var(--borda-verde); box-shadow: 0 24px 64px rgba(0,0,0,0.45); background: rgba(0,168,107,0.02); }
+
+/* ══════════════════════════════════════════
+   CROMIA (PALETA DE CORES)
+══════════════════════════════════════════ */
+.swatch { border-radius: 14px; overflow: hidden; border: 1px solid var(--borda); transition: transform 0.3s; }
+.swatch:hover { transform: translateY(-5px); }
+.swatch-preview { height: 160px; display: flex; align-items: flex-end; padding: 14px; position: relative; }
+.swatch-chip {
+  font-family: 'Inter', monospace; font-size: 11px; font-weight: 700; color: #FFF;
+  padding: 6px 14px; border-radius: 8px; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px);
+}
+.swatch-info { background: var(--cinza-4); padding: 20px 22px; }
+.swatch-name { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #FFF; }
+.swatch-role { font-size: 11px; color: var(--texto); letter-spacing: 0.05em; }
+
+/* ══════════════════════════════════════════
+   TIPOGRAFIA COMPLETA
+══════════════════════════════════════════ */
+.type-block { border: 1px solid var(--borda); border-radius: 20px; overflow: hidden; margin-bottom: 30px; background: rgba(255,255,255,0.01); }
+.type-bar { background: var(--cinza-4); padding: 16px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--borda); }
+.type-bar-left { display: flex; align-items: center; gap: 14px; }
+.type-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--verde); background: rgba(0,168,107,0.1); padding: 6px 16px; border-radius: 100px; }
+.type-weights { display: flex; gap: 10px; }
+.weight-pill { font-size: 10px; border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; color: var(--texto); }
+
+.type-content { padding: 50px 35px; }
+.display-text { font-family: 'Poppins', sans-serif; font-size: clamp(38px, 6vw, 80px); font-weight: 800; line-height: 1; color: #fff; margin-bottom: 20px; letter-spacing: -0.02em; }
+.playfair-text { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-style: italic; color: var(--gold); margin-bottom: 20px; }
+.body-text { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.8; color: var(--texto-2); max-width: 700px; }
+
+/* ══════════════════════════════════════════
+   ESTACIONÁRIO 3D (FÍSICO & LUXURY)
+══════════════════════════════════════════ */
+.stage-3d { perspective: 2000px; display: flex; flex-wrap: wrap; gap: 60px; justify-content: center; align-items: center; padding: 40px 0; }
+
+/* Pasta Executiva */
+.folder {
+  width: 440px; height: 580px; background: var(--azul);
+  border-radius: 4px 16px 16px 4px; position: relative;
+  box-shadow: inset -5px 0 20px rgba(0,0,0,0.3), 30px 40px 70px rgba(0,0,0,0.6);
+  transform: rotateX(15deg) rotateY(-15deg); transition: transform 0.6s;
+  display: flex; flex-direction: column; justify-content: space-between; padding: 50px;
+}
+.folder:hover { transform: rotateX(5deg) rotateY(-5deg) translateY(-10px); }
+.folder-elastic { position: absolute; right: 25px; top: 0; bottom: 0; width: 6px; background: var(--verde); box-shadow: -2px 0 5px rgba(0,0,0,0.3); }
+.folder-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 36px; color: var(--gold); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.folder-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: rgba(255,255,255,0.8); margin-top: auto; }
+.folder-tag { font-size: 10px; color: var(--verde); letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; font-weight: 700; }
+
+/* Papel Timbrado + Marca de Água */
+.letterhead {
+  width: 440px; height: 580px; background: #FCFCFC; color: #111;
+  border-radius: 2px; transform: rotateX(15deg) rotateY(10deg);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6); transition: transform 0.6s; position: relative; overflow: hidden;
+}
+.letterhead:hover { transform: rotateX(5deg) rotateY(5deg) translateY(-10px); }
+.lh-header { background: var(--azul); padding: 30px 40px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+.lh-stripe { height: 4px; background: linear-gradient(90deg, var(--verde), var(--verde-dark)); }
+.lh-body { padding: 50px 40px; position: relative; z-index: 1; }
+.lh-watermark {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 380px;
+  color: rgba(0,0,0,0.02); z-index: 0; pointer-events: none;
+}
+
+/* Envelope Premium + Wax Seal */
+.envelope {
+  width: 500px; height: 240px; background: #FAFAFA; border-radius: 6px;
+  transform: rotateX(20deg) rotateZ(-5deg); box-shadow: 0 40px 70px rgba(0,0,0,0.5);
+  position: relative; border: 1px solid #DDD; transition: transform 0.6s;
+}
+.envelope:hover { transform: rotateX(10deg) rotateZ(0deg) scale(1.05); }
+.env-flap {
+  position: absolute; top: 0; left: 0; width: 100%; height: 55%;
+  background: #F5F5F5; clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 2;
+}
+.wax-seal {
+  position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+  width: 55px; height: 55px; background: radial-gradient(circle at 30% 30%, var(--gold), #8A6B1C);
+  border-radius: 50%; border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.3), inset 0 -3px 8px rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: 26px; color: #4A3600; z-index: 5;
+}
+.env-stripe { position: absolute; bottom: 0; left: 0; width: 100%; height: 40px; background: var(--azul); display: flex; align-items: center; padding: 0 35px; }
+.env-stripe-text { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 2px; font-weight: 600; }
+
+/* Cartão de Nota / Thank You Card */
+.note-card {
+  width: 220px; height: 300px; background: #FFF; border-radius: 4px;
+  transform: rotateX(20deg) rotateY(20deg) rotateZ(5deg);
+  box-shadow: 20px 30px 50px rgba(0,0,0,0.5); position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: transform 0.6s; border: 1px solid #EEE;
+}
+.note-card:hover { transform: rotateX(10deg) rotateY(10deg) rotateZ(0deg) translateY(-10px); }
+.note-fold { position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0.08), rgba(0,0,0,0.02)); }
+.note-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 45px; color: var(--azul); }
+.note-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: #555; margin-top: 20px; }
+
+/* Caderneta / Notepad Executivo */
+.notepad {
+  width: 260px; height: 360px; background: var(--cinza-1);
+  border-radius: 2px 12px 12px 2px; border-left: 20px solid var(--verde);
+  box-shadow: 25px 35px 60px rgba(0,0,0,0.6), inset -2px 0 5px rgba(255,255,255,0.05);
+  transform: rotateX(25deg) rotateZ(-15deg); transition: transform 0.6s;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.notepad:hover { transform: rotateX(15deg) rotateZ(-5deg); }
+.notepad-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; color: rgba(255,255,255,0.05); transform: rotate(-90deg); letter-spacing: 10px; }
+.notepad-ribbon { position: absolute; bottom: -40px; left: 60px; width: 16px; height: 120px; background: var(--verde-dark); box-shadow: 2px 5px 10px rgba(0,0,0,0.4); z-index: -1; }
+
+/* Cartões de Visita (3D Flipping style restaurado) */
+.bcard {
+  width: 380px; height: 212px; border-radius: 12px; overflow: hidden; position: relative;
+  box-shadow: 0 40px 90px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04);
+  transition: all 0.55s cubic-bezier(0.23,1,0.32,1); cursor: pointer;
+  transform: rotateX(15deg) rotateY(-5deg);
+}
+.bcard:hover { transform: translateY(-14px) rotate(0deg); box-shadow: 0 60px 110px rgba(0,0,0,0.7), 0 0 50px rgba(0,168,107,0.2); }
+.bcard-front {
+  width: 100%; height: 100%; background: linear-gradient(140deg, #0A1F44 0%, #05070D 100%);
+  padding: 30px 35px; display: flex; flex-direction: column; justify-content: space-between; position: relative;
+}
+.bcard-front::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--verde) 0%, #007A4E 60%, transparent 100%); }
+.bcard-back {
+  width: 100%; height: 100%; background: linear-gradient(140deg, var(--verde) 0%, #006644 100%);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.bcard-back::before { content: ""; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border: 60px solid rgba(255,255,255,0.06); border-radius: 50%; }
+
+/* ══════════════════════════════════════════
+   DIGITAL (ASSINATURA DE EMAIL)
+══════════════════════════════════════════ */
+.email-sig-wrapper {
+  background: #fff; border-radius: 16px; overflow: hidden; max-width: 600px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5); margin: 0 auto;
+}
+.email-sig { padding: 35px 40px; font-family: 'Inter', sans-serif; color: #333; display: flex; gap: 25px; align-items: center; }
+.email-avatar {
+  width: 80px; height: 80px; border-radius: 50%; background: var(--azul);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; color: var(--verde); flex-shrink: 0;
+}
+.email-details { border-left: 2px solid #EEE; padding-left: 25px; }
+.email-name { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px; color: var(--azul); margin-bottom: 2px; }
+.email-role { font-size: 11px; color: var(--verde); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.email-contact { font-size: 12px; color: #777; line-height: 1.8; }
+
+/* ══════════════════════════════════════════
+   TOUCHPOINTS LUXURY (UI Cards)
+══════════════════════════════════════════ */
+.luxury-icon { width: 56px; height: 56px; border-radius: 14px; background: rgba(0,168,107,0.1); border: 1px solid var(--borda-verde); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px; }
+.luxury-title { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #FFF; }
+.luxury-desc { font-size: 14px; color: var(--texto); line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   COMBOS & ESTRATÉGIA
+══════════════════════════════════════════ */
+.combo-card { border-top: 4px solid transparent; }
+.combo-card.premium { border-color: var(--gold); background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, rgba(255,255,255,0.02) 100%); }
+.combo-card.standard { border-color: var(--verde); }
+.combo-badge { display: inline-block; padding: 6px 12px; border-radius: 4px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+.bg-gold { background: rgba(212,175,55,0.15); color: var(--gold); }
+.bg-green { background: rgba(0,168,107,0.15); color: var(--verde); }
+.combo-list { list-style: none; font-size: 14px; color: var(--texto); line-height: 2.2; margin-top: 20px; }
+.combo-list li::before { content: "+"; color: var(--verde); margin-right: 8px; font-weight: bold; }
+.combo-list.gold-list li::before { color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   ROADMAP DE IMPLEMENTAÇÃO
+══════════════════════════════════════════ */
+.roadmap-item { display: flex; gap: 30px; margin-bottom: 40px; }
+.roadmap-phase { width: 100px; flex-shrink: 0; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 16px; color: var(--verde); text-align: right; padding-top: 5px; }
+.roadmap-content { flex: 1; padding-left: 30px; border-left: 1px solid var(--borda); position: relative; }
+.roadmap-content::before { content: ""; position: absolute; left: -6px; top: 12px; width: 11px; height: 11px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 12px var(--verde); }
+.roadmap-content.gold-phase::before { background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+.roadmap-content h4 { color: #FFF; font-family: 'Poppins', sans-serif; font-size: 18px; margin-bottom: 15px; }
+.roadmap-content ul { list-style: none; }
+.roadmap-content li { font-size: 14px; color: var(--texto-2); margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+.roadmap-content li::before { content: "✓"; color: var(--verde); font-weight: bold; }
+.roadmap-content.gold-phase li::before { color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   ANIMAÇÃO & FOOTER (MAZARI CORP)
+══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+footer { position: relative; z-index: 1; padding: 100px 40px 60px; text-align: center; border-top: 1px solid var(--borda); margin-top: 60px; background: rgba(5,7,13,0.8); }
+.agency-credit { margin-top: 60px; padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-links { display: none; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .folder, .letterhead { width: 100%; height: 400px; }
+  .envelope { width: 100%; height: 200px; }
+  .bcard { width: 320px; height: 180px; }
+  .roadmap-item { flex-direction: column; gap: 15px; }
+  .roadmap-phase { text-align: left; padding-top: 0; }
+  .email-sig { flex-direction: column; text-align: center; }
+  .email-details { border-left: none; border-top: 1px solid #EEE; padding-left: 0; padding-top: 20px; margin-top: 10px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-ambient"></div>
+
+<nav>
+  <div class="nav-logo">DIRETRIX<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#dna">DNA</a></li>
+    <li><a href="#cromia">Cromia</a></li>
+    <li><a href="#tipo">Tipo</a></li>
+    <li><a href="#fisico">Físico</a></li>
+    <li><a href="#premium">Premium</a></li>
+    <li><a href="#roadmap">Estratégia</a></li>
+  </ul>
+  <a href="#roadmap" class="nav-cta">Solicitar Guide</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><div class="hero-badge-dot" style="width:6px;height:6px;background:var(--verde);border-radius:50%;box-shadow:0 0 10px var(--verde);animation:pulse 2s infinite;"></div> Masterbrand Ecosystem</div>
+  <h1 class="hero-title">DIRETRIX<span class="green">.</span></h1>
+  <p class="hero-sub">The Ultra Premium Experience</p>
+  <p class="hero-desc">Elevando a identidade visual através de touchpoints táteis, materiais de luxo e precisão executiva incomparável. Não poupamos em excelência.</p>
+</section>
+
+<!-- DNA -->
+<section class="section" id="dna">
+  <div class="reveal">
+    <div class="section-label">Filosofia</div>
+    <h2 class="section-title">Pilares do Ecossistema</h2>
+    <p class="section-desc">A Diretrix nasceu para guiar empresas no caos digital, oferecendo clareza através de design estratégico e tecnologia de ponta.</p>
+  </div>
+  
+  <div class="grid-3">
+    <div class="card reveal" style="transition-delay: 0.1s;">
+      <h3 style="color:var(--verde); margin-bottom:12px; font-family:'Poppins';">Arquitetura</h3>
+      <p style="font-size:14px; color:var(--texto); line-height:1.7;">Estruturas modulares que garantem consistência absoluta em escala global. Navegamos pela complexidade.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.2s;">
+      <h3 style="color:var(--verde); margin-bottom:12px; font-family:'Poppins';">Precisão</h3>
+      <p style="font-size:14px; color:var(--texto); line-height:1.7;">Cada pixel é posicionado seguindo grids matemáticos e proporções áureas para uma execução perfeita.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.3s;">
+      <h3 style="color:var(--verde); margin-bottom:12px; font-family:'Poppins';">Vanguarda</h3>
+      <p style="font-size:14px; color:var(--texto); line-height:1.7;">Sempre um passo à frente, antecipando tendências e definindo os novos padrões da estética corporativa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CROMIA COMPLETA -->
+<section class="section" id="cromia">
+  <div class="reveal">
+    <div class="section-label">Cromia</div>
+    <h2 class="section-title">Paleta Institucional</h2>
+    <p class="section-desc">Uma combinação de profundidade tecnológica e energia orgânica, com toques de luxo para aplicações premium.</p>
+  </div>
+
+  <div class="grid-4">
+    <div class="swatch reveal">
+      <div class="swatch-preview" style="background:var(--verde);">
+        <span class="swatch-chip">#00A86B</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Verde Diretrix</div>
+        <div class="swatch-role">Primária / Inovação</div>
+      </div>
+    </div>
+    <div class="swatch reveal" style="transition-delay:0.1s;">
+      <div class="swatch-preview" style="background:var(--azul);">
+        <span class="swatch-chip">#0A1F44</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Azul Profundo</div>
+        <div class="swatch-role">Secundária / Prestígio</div>
+      </div>
+    </div>
+    <div class="swatch reveal" style="transition-delay:0.2s;">
+      <div class="swatch-preview" style="background:var(--preto);">
+        <span class="swatch-chip">#05070D</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Obsidiana</div>
+        <div class="swatch-role">Fundo / Contraste</div>
+      </div>
+    </div>
+    <div class="swatch reveal" style="transition-delay:0.3s;">
+      <div class="swatch-preview" style="background:var(--gold);">
+        <span class="swatch-chip">#D4AF37</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Ouro Moderno</div>
+        <div class="swatch-role">Destaque / Luxury</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA COMPLETA -->
+<section class="section" id="tipo">
+  <div class="reveal">
+    <div class="section-label">Voz Visual</div>
+    <h2 class="section-title">Sistema Tipográfico</h2>
+    <p class="section-desc">A tríade tipográfica perfeita: O peso institucional, a elegância editorial e a performance técnica.</p>
+  </div>
+
+  <div class="type-block reveal">
+    <div class="type-bar">
+      <div class="type-bar-left">
+        <span class="type-tag">Display</span>
+        <span style="font-size:13px; color:var(--texto); font-weight:600;">Poppins</span>
+      </div>
+      <div class="type-weights">
+        <span class="weight-pill">Medium</span>
+        <span class="weight-pill">Bold</span>
+        <span class="weight-pill" style="border-color:var(--verde); color:var(--verde);">ExtraBold</span>
+      </div>
+    </div>
+    <div class="type-content">
+      <div class="display-text">AUTHORITY.</div>
+      <p class="body-text">Utilizada para títulos de grande impacto, transmitindo autoridade e modernidade. O peso ExtraBold garante legibilidade em escalas monumentais.</p>
+    </div>
+  </div>
+
+  <div class="type-block reveal" style="transition-delay:0.1s;">
+    <div class="type-bar">
+      <div class="type-bar-left">
+        <span class="type-tag" style="background:rgba(212,175,55,0.1); color:var(--gold);">Editorial</span>
+        <span style="font-size:13px; color:var(--texto); font-weight:600;">Playfair Display</span>
+      </div>
+      <div class="type-weights">
+        <span class="weight-pill">Regular</span>
+        <span class="weight-pill" style="border-color:var(--gold); color:var(--gold);">Italic</span>
+      </div>
+    </div>
+    <div class="type-content">
+      <div class="playfair-text">The art of mathematical precision.</div>
+      <p class="body-text">Introduzida para momentos de sofisticação e contraste humano dentro do ecossistema tecnológico, ideal para convites, citações e assinaturas VIP.</p>
+    </div>
+  </div>
+
+  <div class="type-block reveal" style="transition-delay:0.2s;">
+    <div class="type-bar">
+      <div class="type-bar-left">
+        <span class="type-tag" style="background:rgba(255,255,255,0.05); color:#FFF;">Body</span>
+        <span style="font-size:13px; color:var(--texto); font-weight:600;">Inter</span>
+      </div>
+      <div class="type-weights">
+        <span class="weight-pill">Light</span>
+        <span class="weight-pill" style="border-color:#FFF; color:#FFF;">Regular</span>
+        <span class="weight-pill">SemiBold</span>
+      </div>
+    </div>
+    <div class="type-content">
+      <div style="font-family:'Inter'; font-size: 24px; margin-bottom:20px; color:#FFF;">Clareza, legibilidade e performance absoluta.</div>
+      <p class="body-text">Inter é a escolha técnica para interfaces e documentos densos. Sua neutralidade permite que o conteúdo seja o protagonista, mantendo o aspecto altamente tecnológico e funcional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PEÇAS ESSENCIAIS & PAPELARIA FÍSICA -->
+<section class="section" id="fisico">
+  <div class="reveal">
+    <div class="section-label">Físico / Fase 1</div>
+    <h2 class="section-title">Papelaria Essencial</h2>
+    <p class="section-desc">O núcleo do nosso sistema físico. Materiais com alto valor percebido que transmitem autoridade imediata no primeiro contacto.</p>
+  </div>
+
+  <div class="stage-3d">
+    <!-- Capa de Proposta / Pasta Executiva -->
+    <div class="folder reveal">
+      <div class="folder-logo">DIRETRIX.</div>
+      <div>
+        <div class="folder-title">Strategic Proposal</div>
+        <div class="folder-tag">Confidential Document • 2026</div>
+      </div>
+      <div class="folder-elastic"></div>
+    </div>
+
+    <!-- Timbrado com Marca de Água -->
+    <div class="letterhead reveal" style="transition-delay: 0.2s;">
+      <div class="lh-header">
+        <div style="font-weight:900; font-size:18px;">DIRETRIX.</div>
+        <div style="font-size:8px; opacity:0.6; text-align:right;">SÃO PAULO • BRASIL</div>
+      </div>
+      <div class="lh-stripe"></div>
+      <div class="lh-body">
+        <div class="lh-watermark">D</div>
+        <div style="font-size:10px; color:#AAA; margin-bottom:30px;">27 MAR 2026</div>
+        <div style="font-family:'Playfair Display', serif; font-size:18px; font-style:italic; border-left:3px solid var(--verde); padding-left:15px; margin-bottom:20px; color:var(--azul);">
+          Documento Oficial
+        </div>
+        <div style="width:100%; height:2px; background:#EEE; margin-bottom:10px;"></div>
+        <div style="width:80%; height:2px; background:#EEE; margin-bottom:10px;"></div>
+        <div style="width:95%; height:2px; background:#EEE; margin-bottom:10px;"></div>
+        <div style="width:70%; height:2px; background:#EEE; margin-bottom:40px;"></div>
+        
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px; height:30px; background:var(--azul); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--verde); font-weight:900; font-size:12px;">D</div>
+          <div>
+            <div style="font-weight:700; font-size:11px; color:var(--azul);">Alexandre Silva</div>
+            <div style="font-size:9px; color:#999;">CDO Diretrix</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-3d">
+    <!-- Envelope com Selo de Cera -->
+    <div class="envelope reveal">
+      <div class="env-flap"></div>
+      <div class="wax-seal">D</div>
+      <div class="env-stripe">
+        <span class="env-stripe-text">DIRETRIX MASTERBRAND • AV. PAULISTA, 2500 • SAO PAULO</span>
+      </div>
+    </div>
+
+    <!-- Cartão de Nota / Thank You -->
+    <div class="note-card reveal" style="transition-delay: 0.2s;">
+      <div class="note-fold"></div>
+      <div class="note-logo">D.</div>
+      <div class="note-text">Thank You</div>
+    </div>
+
+    <!-- Caderneta Executiva -->
+    <div class="notepad reveal" style="transition-delay: 0.4s;">
+      <div class="notepad-logo">DIRETRIX</div>
+      <div class="notepad-ribbon"></div>
+    </div>
+  </div>
+
+  <!-- Cartões de Visita (3D Flipping style) -->
+  <div class="stage-3d" style="margin-top: 40px;">
+    <div class="bcard reveal">
+      <div class="bcard-front">
+        <div style="font-weight:900; font-size:22px; color:#FFF;">DIRETRIX<span>.</span></div>
+        <div>
+          <div style="font-weight:700; font-size:18px; color:#FFF;">Mauricio Rocha</div>
+          <div style="font-size:11px; color:var(--verde); text-transform:uppercase; letter-spacing:2px; margin-top:5px; font-weight:600;">Presidente</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:20px;">humberto@diretrix.com.br</div>
+        </div>
+      </div>
+    </div>
+    <div class="bcard reveal" style="transition-delay:0.2s; transform: rotateX(15deg) rotateY(5deg);">
+      <div class="bcard-back">
+        <div class="bcard-back-logo">D</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSINATURA DIGITAL -->
+<section class="section" id="digital">
+  <div class="reveal">
+    <div class="section-label">Digital</div>
+    <h2 class="section-title">Assinatura de Email</h2>
+    <p class="section-desc">Padronização obrigatória para toda a comunicação corporativa digital, mantendo o nível premium em cada envio.</p>
+  </div>
+
+  <div class="email-sig-wrapper reveal">
+    <div class="email-sig">
+      <div class="email-avatar">D</div>
+      <div class="email-details">
+        <div class="email-name">Mauricio Rocha</div>
+        <div class="email-role">Presidente Executivo</div>
+        <div class="email-contact">+55 11 98888-7777<br>corporativo@diretrix.com.br<br>www.diretrix.com.br</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOUCHPOINTS DE DIFERENCIAÇÃO E LUXO -->
+<section class="section" id="premium">
+  <div class="reveal">
+    <div class="section-label">Diferenciação / Luxury</div>
+    <h2 class="section-title">Premium Touchpoints</h2>
+    <p class="section-desc">Itens desenvolvidos para criar uma experiência de marca memorável, unboxing premium e diferenciação absoluta em eventos e reuniões de alto escalão.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card reveal">
+      <div class="luxury-icon">✒️</div>
+      <h3 class="luxury-title">Caneta Personalizada</h3>
+      <p class="luxury-desc">Estilo Montblanc preta com detalhes e gravação a laser. Entregue em caixa rígida com aba magnética.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.1s;">
+      <div class="luxury-icon">🏷️</div>
+      <h3 class="luxury-title">Etiquetas / Labels</h3>
+      <p class="luxury-desc">Adesivos em vinil translúcido e papel texturizado para lacres, envios e fechamento de presentes corporativos.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.2s;">
+      <div class="luxury-icon">📮</div>
+      <h3 class="luxury-title">Caixa de Envio Premium</h3>
+      <p class="luxury-desc">Caixa kraft escura com fechamento em fita de linho, berço de papel de seda verde e lacre personalizado.</p>
+    </div>
+    <div class="card reveal">
+      <div class="luxury-icon">💼</div>
+      <h3 class="luxury-title">Pochete / Bolsa VIP</h3>
+      <p class="luxury-desc">Material em couro vegano escuro com zíper metálico verde e logo discretamente gravado em baixo relevo.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.1s;">
+      <div class="luxury-icon">🔖</div>
+      <h3 class="luxury-title">Certificado de Autenticidade</h3>
+      <p class="luxury-desc">Impresso em papel moeda com gradiente verde sutil, marca d'água de segurança e selo dourado.</p>
+    </div>
+    <div class="card reveal" style="transition-delay: 0.2s;">
+      <div class="luxury-icon">💻</div>
+      <h3 class="luxury-title">Video Background</h3>
+      <p class="luxury-desc">Design digital ultra HD para Zoom/Teams com degradê institucional escuro e logo estrategicamente posicionado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMBOS ESTRATÉGICOS -->
+<section class="section" id="combos">
+  <div class="reveal">
+    <div class="section-label">Kits de Conversão</div>
+    <h2 class="section-title">Combos Recomendados</h2>
+    <p class="section-desc">Agrupamento estratégico de touchpoints físicos para momentos específicos da jornada do cliente.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card combo-card standard reveal">
+      <span class="combo-badge bg-green">Kit Novos Clientes</span>
+      <h3 class="luxury-title">Primeira Impressão</h3>
+      <p class="luxury-desc">O pacote essencial para onboarding, transmitindo solidez e profissionalismo imediato.</p>
+      <ul class="combo-list">
+        <li>Envelope Corporativo</li>
+        <li>Cartão de Visita</li>
+        <li>Folha Timbrada</li>
+        <li>Caixa Kraft Simples</li>
+      </ul>
+    </div>
+    
+    <div class="card combo-card premium reveal" style="transition-delay: 0.1s; transform: scale(1.05); z-index: 10;">
+      <span class="combo-badge bg-gold">Kit Premium VIP</span>
+      <h3 class="luxury-title">Proposta Executiva</h3>
+      <p class="luxury-desc">Apresentações que fecham grandes negócios. Uma experiência tátil e inesquecível.</p>
+      <ul class="combo-list gold-list">
+        <li>Pasta Executiva (Hot Stamping)</li>
+        <li>Folhas Timbradas (Proposta)</li>
+        <li>Envelope de Apresentação</li>
+        <li>Fechamento com Wax Seal</li>
+      </ul>
+    </div>
+
+    <div class="card combo-card standard reveal" style="transition-delay: 0.2s;">
+      <span class="combo-badge bg-green">Kit Retenção</span>
+      <h3 class="luxury-title">Relacionamento</h3>
+      <p class="luxury-desc">Brindes de alto padrão enviados periodicamente para fidelizar clientes-chave.</p>
+      <ul class="combo-list">
+        <li>Notepad Executivo</li>
+        <li>Caneta Personalizada</li>
+        <li>Cartão de Nota (Agradecimento)</li>
+        <li>Adesivos / Labels Premium</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP DE IMPLEMENTAÇÃO -->
+<section class="section" id="roadmap">
+  <div class="reveal">
+    <div class="section-label">Execução Estratégica</div>
+    <h2 class="section-title">Roadmap de Produção</h2>
+    <p class="section-desc">Cronograma priorizado por matriz de Impacto vs. Custo para garantir a padronização gradual, eficiente e financeiramente viável.</p>
+  </div>
+
+  <div class="card reveal" style="max-width: 900px; margin: 0 auto; padding: 60px;">
+    <div class="roadmap-item">
+      <div class="roadmap-phase">FASE 1</div>
+      <div class="roadmap-content">
+        <h4>Implementação Imediata (Alto Impacto / Baixo Custo)</h4>
+        <ul>
+          <li>Envelope Corporativo (A4 com aba reforçada)</li>
+          <li>Cartão de Nota Premium (Essencial para follow-ups)</li>
+          <li>Capa de Proposta / Apresentação</li>
+          <li>Etiquetas Premium (Adesivos multiuso)</li>
+          <li>Background de Vídeo (Zoom/Teams corporativo)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="roadmap-phase">FASE 2</div>
+      <div class="roadmap-content">
+        <h4>Próximos 3 Meses (Brindes e Consistência)</h4>
+        <ul>
+          <li>Caneta Personalizada com Gravação a Laser</li>
+          <li>Caderneta / Notepad Executivo</li>
+          <li>Marca de Água no Papel Timbrado</li>
+          <li>Banner / Rollup de Alta Qualidade para Eventos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-item" style="margin-bottom: 0;">
+      <div class="roadmap-phase" style="color: var(--gold);">FASE 3</div>
+      <div class="roadmap-content gold-phase">
+        <h4 style="color: var(--gold);">Luxury (Diferencial Competitivo Extremo)</h4>
+        <ul>
+          <li>Pasta Executiva (Capa Dura / Hot Stamping)</li>
+          <li>Selador de Cera (Wax Seal em Metal Customizado)</li>
+          <li>Caixa de Envio Personalizada Premium</li>
+          <li>Pochete / Bolsa Brinde VIP</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER MAZARI CORP -->
+<footer>
+  <div class="nav-logo" style="font-size: 32px; margin-bottom: 20px;">DIRETRIX<span>.</span></div>
+  <p style="color:var(--texto); font-size:15px; letter-spacing:4px; text-transform:uppercase; font-weight: 300;">Defining Future Standards</p>
+  
+  <div class="agency-credit">
+    <p style="font-size: 11px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-weight: 800; margin-bottom: 15px;">Desenvolvido Exclusivamente Por</p>
+    <h4 style="font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 26px; color: #FFF; margin-bottom: 8px; letter-spacing: -0.5px;">MAZARI CORP</h4>
+    <p style="font-size: 14px; color: var(--texto-2); margin-bottom: 6px; font-weight: 500;">Presidente: Humberto Barbosa</p>
+    <p style="font-size: 13px; color: var(--verde); margin-bottom: 30px; letter-spacing: 1px;">corporativo@mazaricorp.com</p>
+    
+    <div style="font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px;">
+      © 2026 DIRETRIX BRAND SYSTEM • POWERED BY MAZARI CORP • ALL RIGHTS RESERVED
+    </div>
+  </div>
+</footer>
+
+<script>
+// Observer para ativar animações de fade/slide up ao fazer scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Opcional: desobservar depois de animar uma vez para performance
+      // observer.unobserve(entry.target); 
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
