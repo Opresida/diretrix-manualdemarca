@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Brandbook from './pages/Brandbook'
 import ConsultoriaTI from './pages/ConsultoriaTI'
 import TreinamentosProfissionais from './pages/TreinamentosProfissionais'
+import TreinamentosInformatica from './pages/TreinamentosInformatica'
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/brandbook" component={Brandbook} />
       <Route path="/consultoria-ti" component={ConsultoriaTI} />
       <Route path="/treinamentos-profissionais" component={TreinamentosProfissionais} />
+      <Route path="/treinamentos-informatica" component={TreinamentosInformatica} />
       {/* 404 — fallback para a Home institucional */}
       <Route component={Home} />
     </Switch>

@@ -1977,3 +1977,320 @@
     gap: 12px;
   }
 }
+
+/* ══════════════════════════════════════════
+   /treinamentos-informatica — Graph técnico
+══════════════════════════════════════════ */
+
+/* Terminal cabeçalho — visual signature técnica */
+.info-terminal {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 60px 56px 80px;
+  position: relative;
+  z-index: 1;
+}
+.info-terminal-window {
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.info-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--borda);
+  background: rgba(255, 255, 255, 0.02);
+}
+.info-terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+.info-terminal-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+.info-terminal-dots span:nth-child(1) { background: rgba(255, 95, 86, 0.6); }
+.info-terminal-dots span:nth-child(2) { background: rgba(255, 189, 46, 0.6); }
+.info-terminal-dots span:nth-child(3) { background: rgba(0, 168, 107, 0.7); }
+.info-terminal-title {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--texto);
+  margin-left: 8px;
+}
+.info-terminal-body {
+  margin: 0;
+  padding: 24px 28px;
+  font-family: 'Inter', monospace;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--texto-2);
+  background: transparent;
+  white-space: pre-wrap;
+}
+.info-terminal-prompt {
+  color: var(--verde);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.info-terminal-cmd {
+  color: var(--branco);
+  font-weight: 600;
+}
+.info-terminal-out {
+  color: var(--texto-2);
+}
+.info-terminal-ok {
+  color: var(--verde);
+  font-weight: 600;
+}
+
+/* Graph */
+.skill-graph {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+  position: relative;
+  z-index: 1;
+}
+.skill-graph-head {
+  max-width: 720px;
+  margin-bottom: 60px;
+}
+.skill-graph-titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--branco);
+  margin-bottom: 20px;
+}
+.skill-graph-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+}
+.skill-graph-lede strong {
+  color: var(--branco);
+  font-weight: 600;
+}
+
+.skill-graph-area {
+  margin-bottom: 48px;
+  padding: 24px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+}
+.skill-graph-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.skill-node circle {
+  transition: r 0.25s, fill 0.25s;
+}
+.skill-node:hover circle {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Detalhe do skill */
+.skill-detail {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  padding: 40px;
+  border: 1px solid var(--borda-verde);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0, 168, 107, 0.04) 0%, transparent 100%);
+}
+.skill-detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.skill-detail-level {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.skill-detail-nome {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 2.6vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--branco);
+  line-height: 1;
+}
+.skill-detail-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+}
+
+.skill-detail-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 32px;
+  border-left: 1px solid var(--borda);
+}
+.skill-detail-modulos-label {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--texto);
+}
+.skill-detail-modulos ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.skill-detail-modulos li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: 'Inter', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--branco);
+  letter-spacing: -0.005em;
+}
+.skill-detail-modulo-bullet {
+  color: var(--verde);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Trilhas técnicas */
+.trilhas-tec {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 56px;
+  position: relative;
+  z-index: 1;
+}
+.trilhas-tec-head {
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+.trilhas-tec-titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--branco);
+}
+
+.trilhas-tec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.trilha-tec-card {
+  padding: 32px 28px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.3s;
+}
+.trilha-tec-card:hover {
+  border-color: var(--borda-verde);
+  background: rgba(0, 168, 107, 0.03);
+}
+.trilha-tec-card header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--borda);
+}
+.trilha-tec-tag {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--verde);
+}
+.trilha-tec-card h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--branco);
+  letter-spacing: -0.01em;
+}
+.trilha-tec-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texto-2);
+  font-weight: 300;
+}
+.trilha-tec-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--borda);
+}
+.trilha-tec-meta span {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--texto);
+}
+
+@media (max-width: 900px) {
+  .info-terminal {
+    padding: 40px 24px 60px;
+  }
+  .info-terminal-body {
+    font-size: 11px;
+    padding: 18px 20px;
+  }
+
+  .skill-graph {
+    padding: 60px 24px 80px;
+  }
+  .skill-detail {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+  .skill-detail-modulos {
+    padding-left: 0;
+    border-left: 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--borda);
+  }
+
+  .trilhas-tec {
+    padding: 60px 24px;
+  }
+  .trilhas-tec-grid {
+    grid-template-columns: 1fr;
+  }
+}
