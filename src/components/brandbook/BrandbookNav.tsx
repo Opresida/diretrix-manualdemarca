@@ -7,7 +7,7 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: 'Estratégia', href: '#roadmap' },
 ]
 
-export function Nav() {
+export function BrandbookNav() {
   return (
     <nav className="diretrix-nav">
       <div className="nav-logo">
