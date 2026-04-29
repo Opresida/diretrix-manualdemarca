@@ -17,6 +17,21 @@ const DEFAULT: OGData = {
   url: 'diretrix.com.br',
 }
 
+/**
+ * OG Image Diretrix — DESIGN EXCLUSIVO
+ *
+ * Conceito: "documento institucional" / "brochure premium".
+ *
+ * Diferenciação proposital do Mazari (centralizado):
+ *  - Layout ASSIMÉTRICO, todo o conteúdo flush-left
+ *  - Background gradient diagonal preto → azul profundo (não preto puro)
+ *  - 4 cantos L-bracket gold (referência editorial premium)
+ *  - Hairline gold vertical à esquerda (continuidade com a lombada
+ *    do letterhead da assinatura)
+ *  - Coordenadas geográficas Manaus no rodapé direito (territorial anchor)
+ *  - Watermark "D" gigante em azul translúcido no canto direito
+ *  - Logo no topo-esquerda (não no centro)
+ */
 function OGImageContent({ data }: { data: OGData }) {
   return (
     <div
@@ -24,109 +39,204 @@ function OGImageContent({ data }: { data: OGData }) {
         position: 'relative',
         width: OG_W,
         height: OG_H,
-        backgroundColor: '#05070D',
+        background:
+          'linear-gradient(135deg, #05070D 0%, #0A1F44 65%, #0D2658 100%)',
         overflow: 'hidden',
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      {/* Grid background */}
+      {/* Watermark "D" gigante translúcido no canto direito */}
       <div
         aria-hidden
         style={{
           position: 'absolute',
-          inset: 0,
-          backgroundImage:
-            'linear-gradient(rgba(0,168,107,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,168,107,0.05) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
+          right: -120,
+          top: -80,
+          fontSize: 800,
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontStyle: 'italic',
+          fontWeight: 700,
+          color: 'rgba(212,175,55,0.05)',
+          lineHeight: 0.85,
+          pointerEvents: 'none',
+          letterSpacing: '-0.05em',
         }}
-      />
+      >
+        D
+      </div>
 
-      {/* Radial glow central */}
+      {/* Glow ambiente lime suave */}
       <div
         aria-hidden
         style={{
           position: 'absolute',
           inset: 0,
           background:
-            'radial-gradient(ellipse 60% 65% at 50% 50%, rgba(0,168,107,0.12) 0%, transparent 70%)',
+            'radial-gradient(ellipse 50% 50% at 20% 60%, rgba(0,168,107,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Hairline lime no topo */}
+      {/* ═══ 4 CANTOS L-BRACKET GOLD ═══ */}
+      {/* Top-left */}
       <div
+        aria-hidden
         style={{
           position: 'absolute',
-          top: 0,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 320,
-          height: 2,
-          background: 'linear-gradient(90deg, transparent, #00A86B 50%, transparent)',
+          top: 36,
+          left: 36,
+          width: 32,
+          height: 32,
+          borderTop: '2px solid #D4AF37',
+          borderLeft: '2px solid #D4AF37',
+        }}
+      />
+      {/* Top-right */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: 36,
+          right: 36,
+          width: 32,
+          height: 32,
+          borderTop: '2px solid #D4AF37',
+          borderRight: '2px solid #D4AF37',
+        }}
+      />
+      {/* Bottom-left */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          bottom: 36,
+          left: 36,
+          width: 32,
+          height: 32,
+          borderBottom: '2px solid #D4AF37',
+          borderLeft: '2px solid #D4AF37',
+        }}
+      />
+      {/* Bottom-right */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          bottom: 36,
+          right: 36,
+          width: 32,
+          height: 32,
+          borderBottom: '2px solid #D4AF37',
+          borderRight: '2px solid #D4AF37',
         }}
       />
 
-      {/* Tag superior */}
+      {/* Hairline gold vertical à esquerda — continuidade com a lombada da assinatura */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: 100,
+          bottom: 100,
+          left: 80,
+          width: 2,
+          background:
+            'linear-gradient(180deg, transparent, #D4AF37 30%, #D4AF37 70%, transparent)',
+        }}
+      />
+
+      {/* ═══ HEADER (top-left) ═══ */}
       <div
         style={{
           position: 'absolute',
-          top: 80,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          top: 90,
+          left: 110,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 14,
         }}
       >
-        <span
+        {/* DIRETRIX. logo */}
+        <div
           style={{
-            display: 'inline-block',
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: 0,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 32,
+              fontWeight: 800,
+              letterSpacing: '-0.7px',
+              color: '#FFFFFF',
+              lineHeight: 1,
+            }}
+          >
+            DIRETRIX
+          </span>
+          <span
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: 32,
+              fontWeight: 800,
+              color: '#00A86B',
+              lineHeight: 1,
+              textShadow: '0 0 12px rgba(0,168,107,0.6)',
+            }}
+          >
+            .
+          </span>
+        </div>
+
+        {/* Tag pillars em mono caps gold */}
+        <div
+          style={{
             fontFamily: "'Inter', monospace",
-            fontSize: 16,
-            textTransform: 'uppercase',
-            letterSpacing: '4px',
-            color: '#00A86B',
-            padding: '10px 20px',
-            border: '1px solid rgba(0,168,107,0.35)',
-            borderRadius: 4,
-            backgroundColor: 'rgba(0,168,107,0.05)',
+            fontSize: 11,
             fontWeight: 700,
+            letterSpacing: '4px',
+            color: '#D4AF37',
+            textTransform: 'uppercase',
           }}
         >
           {data.tag}
-        </span>
+        </div>
       </div>
 
-      {/* Título central */}
+      {/* ═══ TÍTULO PRINCIPAL (alinhado à esquerda, vertical center) ═══ */}
       <div
         style={{
           position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '0 100px',
+          left: 110,
+          right: 200,
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
       >
         <h1
           style={{
-            fontSize: 84,
+            fontSize: 92,
             fontWeight: 800,
-            lineHeight: 1.05,
-            letterSpacing: '-0.025em',
+            lineHeight: 0.98,
+            letterSpacing: '-0.03em',
             color: '#FFFFFF',
             margin: 0,
             fontFamily: "'Poppins', sans-serif",
+            textAlign: 'left',
           }}
         >
           {data.title}
           <br />
           <span
             style={{
-              color: '#00A86B',
+              color: '#D4AF37',
               fontStyle: 'italic',
               fontWeight: 700,
               fontFamily: "'Playfair Display', Georgia, serif",
-              textShadow: '0 0 50px rgba(0,168,107,0.45)',
+              textShadow: '0 0 60px rgba(212,175,55,0.45)',
+              letterSpacing: '-0.02em',
             }}
           >
             {data.accent}
@@ -134,60 +244,73 @@ function OGImageContent({ data }: { data: OGData }) {
         </h1>
       </div>
 
-      {/* Logo DIRETRIX. */}
+      {/* ═══ FOOTER LEFT — Tagline editorial ═══ */}
       <div
         style={{
           position: 'absolute',
-          bottom: 80,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          bottom: 90,
+          left: 110,
           display: 'flex',
-          alignItems: 'baseline',
-          gap: 0,
+          flexDirection: 'column',
+          gap: 8,
+          maxWidth: 480,
         }}
       >
-        <span
+        <div
           style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 44,
-            fontWeight: 800,
-            letterSpacing: '-1px',
-            color: '#FFFFFF',
-            lineHeight: 1,
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontStyle: 'italic',
+            fontSize: 18,
+            color: 'rgba(255,255,255,0.55)',
+            lineHeight: 1.4,
           }}
         >
-          DIRETRIX
-        </span>
-        <span
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: 44,
-            fontWeight: 800,
-            color: '#00A86B',
-            lineHeight: 1,
-            textShadow: '0 0 16px rgba(0,168,107,0.6)',
-          }}
-        >
-          .
-        </span>
+          Não vendemos esperança.{' '}
+          <span style={{ color: '#D4AF37', fontWeight: 700 }}>
+            Vendemos critério.
+          </span>
+        </div>
       </div>
 
-      {/* Footer URL */}
+      {/* ═══ FOOTER RIGHT — Coordenadas + URL ═══ */}
       <div
         style={{
           position: 'absolute',
-          bottom: 36,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontFamily: "'Inter', monospace",
-          fontSize: 12,
-          letterSpacing: '3px',
-          textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.40)',
-          fontWeight: 500,
+          bottom: 90,
+          right: 90,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-end',
+          gap: 8,
+          textAlign: 'right',
         }}
       >
-        {data.url}
+        {/* Coordenadas Manaus — territorial anchor */}
+        <div
+          style={{
+            fontFamily: "'Inter', monospace",
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: '3px',
+            color: 'rgba(212,175,55,0.85)',
+            textTransform: 'uppercase',
+          }}
+        >
+          03°06′S · 60°01′W
+        </div>
+        {/* URL */}
+        <div
+          style={{
+            fontFamily: "'Inter', monospace",
+            fontSize: 13,
+            fontWeight: 700,
+            letterSpacing: '4px',
+            color: '#FFFFFF',
+            textTransform: 'uppercase',
+          }}
+        >
+          {data.url}
+        </div>
       </div>
     </div>
   )

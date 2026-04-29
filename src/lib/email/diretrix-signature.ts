@@ -1,12 +1,24 @@
 /**
  * DIRETRIX — Email Signature HTML builder
  * --------------------------------------------
- * Gera assinatura HTML pronta para Gmail / Outlook / Apple Mail.
+ * Design exclusivo: "letterhead executivo com lombada gold".
+ *
+ * Referência conceitual: a pasta executiva 3D do brandbook (folder com
+ * folder-elastic vertical à direita). A assinatura traz a lombada gold
+ * à esquerda como uma manila folder digital — diferenciando-a de
+ * qualquer outro padrão de mercado.
+ *
+ * Hierarquia visual:
+ *  - Lombada gold vertical (signature da casa)
+ *  - Header com DIRETRIX. + tagline pillars em mono caps
+ *  - Nome em Playfair italic GIGANTE (verdadeira assinatura)
+ *  - Cargo em Inter caps verde
+ *  - Contatos em 2x2 grid compacto
+ *  - Tagline final em Playfair italic com accent gold/verde
+ *
  *  - Table-based (Outlook compatível)
  *  - CSS inline (Gmail strips <style>)
- *  - Web-safe font stack (Poppins/Inter não carregam em clients)
- *  - 2 variantes: dark · light
- *  - Layout 2 colunas: pilar de marca + info pessoal
+ *  - 2 variantes: dark (azul profundo) · light (creme institucional)
  */
 
 export interface SignatureData {
@@ -22,37 +34,47 @@ export interface SignatureData {
 export type SignatureVariant = 'dark' | 'light'
 
 const FONT_STACK = "'Helvetica Neue', Helvetica, Arial, sans-serif"
-const MONO_STACK = "'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace"
+const SERIF_STACK = "Georgia, 'Playfair Display', 'Times New Roman', serif"
+const MONO_STACK = "'SF Mono', 'Consolas', 'Courier New', monospace"
 
 const PALETTE: Record<
   SignatureVariant,
   {
     bg: string
+    headerBg: string
     fg: string
     fgSecondary: string
     fgMuted: string
+    nameColor: string
     verde: string
     gold: string
     border: string
+    accent: string
   }
 > = {
   dark: {
-    bg: '#05070D',
+    bg: '#0A1F44', // azul profundo — assinatura institucional Diretrix
+    headerBg: '#05070D', // preto puro pro header
     fg: '#FFFFFF',
-    fgSecondary: 'rgba(255,255,255,0.78)',
-    fgMuted: 'rgba(255,255,255,0.42)',
-    verde: '#00A86B',
+    fgSecondary: 'rgba(255,255,255,0.82)',
+    fgMuted: 'rgba(255,255,255,0.5)',
+    nameColor: '#D4AF37', // nome em gold = signature flourish
+    verde: '#00D688', // verde mais luminoso pra contraste sobre azul
     gold: '#D4AF37',
     border: 'rgba(255,255,255,0.10)',
+    accent: '#00D688',
   },
   light: {
-    bg: '#FFFFFF',
+    bg: '#FAFAF8', // creme institucional, não branco frio
+    headerBg: '#0A1F44', // header sempre azul (continuidade DNA)
     fg: '#0A1F44',
     fgSecondary: '#3A3A3A',
-    fgMuted: '#888888',
-    verde: '#007A4E', // verde mais escuro pra contraste sobre branco
+    fgMuted: '#7A7A7A',
+    nameColor: '#0A1F44',
+    verde: '#007A4E',
     gold: '#997A00',
-    border: '#E5E5E5',
+    border: '#E5E2D8',
+    accent: '#0A1F44',
   },
 }
 
@@ -65,88 +87,115 @@ function escapeHTML(s: string): string {
     .replace(/'/g, '&#39;')
 }
 
-interface ContactItem {
-  value: string
-  highlight?: boolean
-}
-
-function buildContactRow(
-  item: ContactItem,
-  verde: string,
-  fg: string,
-  fgStrong: string,
-): string {
-  if (!item.value.trim()) return ''
-  return `
-        <tr>
-          <td valign="top" style="padding: 3px 8px 3px 0; font-family: ${MONO_STACK}; font-size: 11px; line-height: 1.5; font-weight: 800; color: ${verde}; vertical-align: top;">▸</td>
-          <td valign="top" style="padding: 3px 0; font-family: ${MONO_STACK}; font-size: 12px; line-height: 1.5; color: ${item.highlight ? fgStrong : fg}; ${item.highlight ? 'font-weight: 700;' : ''} word-break: break-word; vertical-align: top;">${escapeHTML(item.value)}</td>
-        </tr>`
-}
-
 export function buildSignatureHTML(
   data: SignatureData,
   variant: SignatureVariant = 'dark',
 ): string {
   const c = PALETTE[variant]
+  const isDark = variant === 'dark'
 
   return `<!--diretrix-signature-start-->
-<table width="520" cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse: collapse; background: ${c.bg}; border: 1px solid ${c.border}; border-radius: 6px; max-width: 520px; font-family: ${FONT_STACK};">
+<table width="540" cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse: collapse; max-width: 540px; font-family: ${FONT_STACK}; box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
   <tr>
-    <!-- ═══ COLUNA BRAND (azul ancorado) ═══ -->
-    <td width="160" valign="top" style="width: 160px; padding: 24px 22px; border-right: 2px solid ${c.verde}; vertical-align: top;">
+    <!-- LOMBADA GOLD à esquerda — "folder elastic" digital -->
+    <td width="6" valign="top" bgcolor="${c.gold}" style="width: 6px; background: ${c.gold}; padding: 0;">&nbsp;</td>
 
-      <!-- Logo DIRETRIX. -->
-      <div style="font-family: ${FONT_STACK}; font-size: 20px; line-height: 1; font-weight: 800; letter-spacing: -0.5px; color: ${c.fg};">
-        DIRETRIX<span style="color: ${c.verde};">.</span>
-      </div>
+    <td valign="top" bgcolor="${c.bg}" style="background: ${c.bg};">
 
-      <!-- Tagline pillars (vertical) -->
-      <div style="margin-top: 18px; font-family: ${MONO_STACK}; font-size: 9px; line-height: 1.85; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: ${c.fgSecondary};">
-        Consultoria<br>Treinamento<br>Estratégia
-      </div>
-
-      <!-- Divisor -->
-      <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse; margin-top: 18px;">
+      <!-- ═══ HEADER BAR (dark profundo) ═══ -->
+      <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse;">
         <tr>
-          <td height="1" style="height: 1px; line-height: 1px; font-size: 0; background: ${c.border};">&nbsp;</td>
+          <td bgcolor="${c.headerBg}" style="background: ${c.headerBg}; padding: 16px 28px;">
+            <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse;">
+              <tr>
+                <td valign="middle" style="font-family: ${FONT_STACK}; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: #FFFFFF; line-height: 1;">
+                  DIRETRIX<span style="color: ${c.verde};">.</span>
+                </td>
+                <td valign="middle" align="right" style="font-family: ${MONO_STACK}; font-size: 8px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: ${c.gold}; line-height: 1.4;">
+                  Consultoria · Treinamento<br>Estratégia
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
       </table>
 
-      <!-- Tagline assinatura -->
-      <div style="margin-top: 14px; font-family: ${MONO_STACK}; font-size: 9px; line-height: 1.55; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; color: ${c.fgMuted};">
-        Não vendemos<br>esperança.<br><span style="color: ${c.gold};">Vendemos critério.</span>
-      </div>
-
-    </td>
-
-    <!-- ═══ COLUNA PESSOA ═══ -->
-    <td valign="top" style="padding: 24px 26px; vertical-align: top;">
-
-      <!-- Nome -->
-      <div style="font-family: ${FONT_STACK}; font-size: 18px; line-height: 1.2; font-weight: 700; color: ${c.fg}; letter-spacing: -0.2px;">
-        ${escapeHTML(data.name)}
-      </div>
-
-      <!-- Cargo -->
-      <div style="margin-top: 5px; font-family: ${MONO_STACK}; font-size: 10px; line-height: 1.4; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: ${c.verde};">
-        ${escapeHTML(data.role)}
-      </div>
-
-      <!-- Divisor -->
-      <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse; margin-top: 14px; margin-bottom: 14px;">
+      <!-- Hairline gold ↓ separa header do body -->
+      <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse;">
         <tr>
-          <td height="1" style="height: 1px; line-height: 1px; font-size: 0; background: ${c.border};">&nbsp;</td>
+          <td height="2" bgcolor="${c.gold}" style="height: 2px; line-height: 2px; font-size: 0; background: ${c.gold};">&nbsp;</td>
         </tr>
       </table>
 
-      <!-- Contatos -->
-      <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse: collapse;">
-        ${buildContactRow({ value: data.email }, c.verde, c.fgSecondary, c.fg)}
-        ${buildContactRow({ value: data.phone }, c.verde, c.fgSecondary, c.fg)}
-        ${buildContactRow({ value: data.location }, c.verde, c.fgSecondary, c.fg)}
-        ${buildContactRow({ value: data.website, highlight: true }, c.verde, c.fgSecondary, c.fg)}
-        ${data.linkedin ? buildContactRow({ value: data.linkedin }, c.verde, c.fgSecondary, c.fg) : ''}
+      <!-- ═══ BODY ═══ -->
+      <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse;">
+        <tr>
+          <td style="padding: 28px 32px 24px;">
+
+            <!-- NOME — Playfair italic GIGANTE (assinatura editorial) -->
+            <div style="font-family: ${SERIF_STACK}; font-style: italic; font-size: 28px; font-weight: 700; color: ${c.nameColor}; line-height: 1.05; letter-spacing: -0.01em; margin: 0;">
+              ${escapeHTML(data.name)}
+            </div>
+
+            <!-- Cargo em verde caps -->
+            <div style="margin-top: 6px; font-family: ${MONO_STACK}; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: ${c.verde}; line-height: 1.4;">
+              ${escapeHTML(data.role)}
+            </div>
+
+            <!-- Hairline divisor sutil -->
+            <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse; margin-top: 18px; margin-bottom: 18px;">
+              <tr>
+                <td height="1" style="height: 1px; line-height: 1px; font-size: 0; background: ${c.border};">&nbsp;</td>
+              </tr>
+            </table>
+
+            <!-- Contatos em 2x2 grid compacto (não 1 coluna nem 1 linha) -->
+            <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse;">
+              <tr>
+                <td width="50%" valign="top" style="padding: 4px 12px 4px 0; font-family: ${FONT_STACK}; font-size: 12px; line-height: 1.5; color: ${c.fgSecondary};">
+                  <span style="font-family: ${MONO_STACK}; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: ${c.gold}; text-transform: uppercase; display: block;">E-mail</span>
+                  ${escapeHTML(data.email)}
+                </td>
+                <td width="50%" valign="top" style="padding: 4px 0; font-family: ${FONT_STACK}; font-size: 12px; line-height: 1.5; color: ${c.fgSecondary};">
+                  <span style="font-family: ${MONO_STACK}; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: ${c.gold}; text-transform: uppercase; display: block;">Telefone</span>
+                  ${escapeHTML(data.phone)}
+                </td>
+              </tr>
+              <tr>
+                <td width="50%" valign="top" style="padding: 12px 12px 4px 0; font-family: ${FONT_STACK}; font-size: 12px; line-height: 1.5; color: ${c.fgSecondary};">
+                  <span style="font-family: ${MONO_STACK}; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: ${c.gold}; text-transform: uppercase; display: block;">Sede</span>
+                  ${escapeHTML(data.location)}
+                </td>
+                <td width="50%" valign="top" style="padding: 12px 0 4px; font-family: ${FONT_STACK}; font-size: 12px; line-height: 1.5; color: ${c.fg}; font-weight: 700;">
+                  <span style="font-family: ${MONO_STACK}; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: ${c.gold}; text-transform: uppercase; display: block;">Web</span>
+                  ${escapeHTML(data.website)}
+                </td>
+              </tr>
+              ${data.linkedin
+                ? `<tr>
+                <td colspan="2" valign="top" style="padding: 12px 0 0; font-family: ${FONT_STACK}; font-size: 12px; line-height: 1.5; color: ${c.fgSecondary};">
+                  <span style="font-family: ${MONO_STACK}; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: ${c.gold}; text-transform: uppercase; display: block;">LinkedIn</span>
+                  ${escapeHTML(data.linkedin)}
+                </td>
+              </tr>`
+                : ''}
+            </table>
+
+            <!-- Hairline gold sutil antes da tagline -->
+            <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="border-collapse: collapse; margin-top: 22px;">
+              <tr>
+                <td height="1" style="height: 1px; line-height: 1px; font-size: 0; background: ${c.gold}; opacity: ${isDark ? '0.4' : '0.5'};">&nbsp;</td>
+              </tr>
+            </table>
+
+            <!-- Tagline assinatura — Playfair italic com accent gold/verde -->
+            <div style="margin-top: 14px; font-family: ${SERIF_STACK}; font-style: italic; font-size: 13px; line-height: 1.5; color: ${c.fgMuted};">
+              Não vendemos esperança.
+              <span style="color: ${c.gold}; font-weight: 700;">Vendemos critério.</span>
+            </div>
+
+          </td>
+        </tr>
       </table>
 
     </td>
@@ -168,18 +217,18 @@ export function buildSignatureFile(
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assinatura DIRETRIX — ${escapeHTML(data.name)}</title>
   <style>
-    body { margin: 0; padding: 32px; background: ${variant === 'dark' ? '#0E1017' : '#F5F5F5'}; font-family: ${FONT_STACK}; }
-    .instructions { max-width: 520px; margin: 0 auto 24px; padding: 16px; background: rgba(0,168,107,0.06); border-left: 3px solid #00A86B; border-radius: 4px; font-size: 13px; line-height: 1.6; color: ${variant === 'dark' ? '#fff' : '#333'}; }
-    .instructions h2 { margin: 0 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; color: #00A86B; }
-    .signature-wrapper { max-width: 520px; margin: 0 auto; }
+    body { margin: 0; padding: 40px 20px; background: ${variant === 'dark' ? '#0E1017' : '#F5F2EA'}; font-family: ${FONT_STACK}; }
+    .instructions { max-width: 540px; margin: 0 auto 28px; padding: 18px 22px; background: ${variant === 'dark' ? 'rgba(212,175,55,0.08)' : 'rgba(212,175,55,0.12)'}; border-left: 3px solid #D4AF37; border-radius: 4px; font-size: 13px; line-height: 1.6; color: ${variant === 'dark' ? '#fff' : '#0A1F44'}; }
+    .instructions h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #D4AF37; font-weight: 800; }
+    .signature-wrapper { max-width: 540px; margin: 0 auto; }
   </style>
 </head>
 <body>
   <div class="instructions">
-    <h2>Como instalar</h2>
+    <h2>Instalação</h2>
     <strong>Gmail:</strong> Configurações → Geral → Assinatura → cole abaixo (Ctrl+A no preview, Ctrl+C, depois Ctrl+V no campo).<br>
     <strong>Outlook:</strong> Arquivo → Opções → Email → Assinaturas → criar nova → cole abaixo.<br>
-    <strong>Apple Mail:</strong> Mail → Preferências → Assinaturas → cole abaixo (desmarque "use system fonts").
+    <strong>Apple Mail:</strong> Mail → Preferências → Assinaturas → cole e desmarque "always match my default font".
   </div>
   <div class="signature-wrapper">
     ${html}
@@ -197,11 +246,11 @@ export function buildSignaturePlainText(data: SignatureData): string {
     data.name,
     data.role,
     '',
-    `▸ ${data.email}`,
-    `▸ ${data.phone}`,
-    `▸ ${data.location}`,
-    `▸ ${data.website}`,
-    data.linkedin ? `▸ ${data.linkedin}` : null,
+    `E-mail   · ${data.email}`,
+    `Telefone · ${data.phone}`,
+    `Sede     · ${data.location}`,
+    `Web      · ${data.website}`,
+    data.linkedin ? `LinkedIn · ${data.linkedin}` : null,
     '',
     'Não vendemos esperança. Vendemos critério.',
   ].filter(Boolean)
