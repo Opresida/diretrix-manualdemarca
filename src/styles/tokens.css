@@ -37,15 +37,26 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--preto);
   color: var(--branco);
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Root container — barreira anti-overflow no nível da árvore React */
+#root {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 /* Proteção global contra overflow horizontal causado por imagens/SVGs/iframes */
