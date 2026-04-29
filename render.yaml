@@ -1,0 +1,46 @@
+# Render Blueprint — Diretrix Site Institucional
+# Documentação: https://render.com/docs/blueprint-spec
+#
+# Como usar:
+# 1. Crie um Blueprint na dashboard do Render apontando para este repo
+# 2. O Render lê este arquivo automaticamente e provisiona o serviço
+# 3. Push em main dispara redeploy
+#
+# Alternativa manual (sem blueprint):
+# - Tipo: Static Site
+# - Build Command: pnpm install && pnpm build
+# - Publish Directory: dist
+
+services:
+  - type: web
+    name: diretrix-site
+    runtime: static
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: PNPM_VERSION
+        value: "10"
+    headers:
+      # Cache forte para assets versionados (Vite gera hashes únicos)
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      # Cache leve para o HTML (pra novos deploys aparecerem rápido)
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+      # Headers básicos de segurança
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    routes:
+      # SPA fallback — wouter precisa que todas as rotas sirvam index.html
+      - type: rewrite
+        source: /*
+        destination: /index.html

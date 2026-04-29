@@ -1,0 +1,4 @@
+# SPA fallback — todas as rotas client-side servidas pelo index.html
+# Sem isso, acessar /brandbook ou /consultoria-ti direto retorna 404.
+# Excluímos /videos/* e /favicon.svg pra que assets reais sejam servidos.
+/*    /index.html   200
