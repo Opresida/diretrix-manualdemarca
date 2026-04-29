@@ -1,10 +1,31 @@
+import { useEffect, useState } from 'react'
+
+const VIDEO_DESKTOP = '/videos/HERO%20TELA%201090X1080.webm'
+const VIDEO_MOBILE = '/videos/MOBILE%20TELA%20%20(1080%20x%201920%20px).webm'
+const MOBILE_QUERY = '(max-width: 768px)'
+
 export function Hero() {
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia(MOBILE_QUERY).matches
+  })
+
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
+
+  const videoSrc = isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP
+
   return (
     <section className="inst-hero">
-      {/* Vídeo de fundo full-bleed */}
+      {/* Vídeo de fundo full-bleed — desktop horizontal / mobile vertical 9:16 */}
       <video
+        key={isMobile ? 'mobile' : 'desktop'}
         className="inst-hero-bg-video"
-        src="/videos/HERO%20TELA%201090X1080.webm"
+        src={videoSrc}
         autoPlay
         loop
         muted

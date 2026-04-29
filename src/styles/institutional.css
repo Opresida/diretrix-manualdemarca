@@ -1371,14 +1371,17 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  /* Mobile: overlay um pouco mais escuro pra texto sobre vídeo respirar */
+  /* Mobile: vídeo vertical 9:16 centralizado + overlay vertical pra legibilidade */
+  .inst-hero-bg-video {
+    object-position: center center;
+  }
   .inst-hero-bg-overlay {
     background:
       linear-gradient(
         180deg,
-        rgba(5, 7, 13, 0.7) 0%,
-        rgba(5, 7, 13, 0.55) 50%,
-        rgba(5, 7, 13, 0.85) 100%
+        rgba(5, 7, 13, 0.78) 0%,
+        rgba(5, 7, 13, 0.55) 45%,
+        rgba(5, 7, 13, 0.92) 100%
       );
   }
 
