@@ -159,9 +159,57 @@
 }
 
 /* ══════════════════════════════════════════
-   01 · HERO — Tese filosófica
+   01 · HERO — Tese filosófica (com vídeo de fundo)
 ══════════════════════════════════════════ */
 .inst-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Vídeo de fundo full-bleed — quebra o limite do container */
+.inst-hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Overlay dark gradient — texto à esquerda fica legível,
+   vídeo respira mais à direita */
+.inst-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 13, 0.92) 0%,
+      rgba(5, 7, 13, 0.78) 35%,
+      rgba(5, 7, 13, 0.55) 65%,
+      rgba(5, 7, 13, 0.45) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 13, 0.4) 0%,
+      transparent 25%,
+      transparent 70%,
+      rgba(5, 7, 13, 0.65) 100%
+    );
+}
+
+.inst-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -169,10 +217,6 @@
   justify-content: center;
   text-align: left;
   padding: 180px 56px 120px;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
 .inst-hero-eyebrow {
@@ -1144,12 +1188,22 @@
     display: none;
   }
 
-  .inst-hero {
+  .inst-hero-inner {
     padding: 140px 24px 80px;
   }
   .inst-hero-foot {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+  /* Mobile: overlay um pouco mais escuro pra texto sobre vídeo respirar */
+  .inst-hero-bg-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 7, 13, 0.7) 0%,
+        rgba(5, 7, 13, 0.55) 50%,
+        rgba(5, 7, 13, 0.85) 100%
+      );
   }
 
   .inst-manifesto {

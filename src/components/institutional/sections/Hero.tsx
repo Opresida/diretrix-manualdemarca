@@ -1,6 +1,21 @@
 export function Hero() {
   return (
     <section className="inst-hero">
+      {/* Vídeo de fundo full-bleed */}
+      <video
+        className="inst-hero-bg-video"
+        src="/videos/HERO%20TELA%201090X1080.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      />
+      {/* Overlay dark gradient — preserva legibilidade do texto à esquerda */}
+      <div className="inst-hero-bg-overlay" aria-hidden="true" />
+
+      <div className="inst-hero-inner">
       <div className="inst-hero-eyebrow">
         <span className="inst-hero-eyebrow-dot" aria-hidden="true" />
         Diretrix · Soluções Corporativas
@@ -45,6 +60,7 @@ export function Hero() {
             Operação amazônica · padrão institucional
           </span>
         </div>
+      </div>
       </div>
     </section>
   )
