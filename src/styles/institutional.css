@@ -1403,6 +1403,15 @@
   .inst-pilares-flow {
     display: none;
   }
+  /* Legenda compacta no tablet — diminui padding/gap/fonte */
+  .inst-pilares-legenda {
+    margin-top: 48px;
+    gap: 12px;
+    padding: 12px 18px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    max-width: 100%;
+  }
 
   .inst-metodo {
     padding: 80px 24px;
@@ -3583,6 +3592,26 @@
   .equipe-section {
     padding-top: 64px;
     padding-bottom: 64px;
+  }
+
+  /* Legenda dos pilares — empilha vertical no mobile pequeno (pílula vira coluna) */
+  .inst-pilares-legenda {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .inst-pilares-legenda-arrow {
+    transform: rotate(90deg);
+    display: inline-block;
+    line-height: 1;
   }
 
   .inst-pilares-title,
