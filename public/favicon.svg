@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="dx-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0E1017"/>
+      <stop offset="100%" stop-color="#05070D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Tile dark com canto arredondado iOS-style -->
+  <rect width="64" height="64" rx="14" fill="url(#dx-bg)"/>
+
+  <!-- Hairline lime sutil no topo (acento institucional) -->
+  <rect x="14" y="3" width="36" height="1" fill="#00A86B" opacity="0.55"/>
+
+  <!-- Letra D — geométrica, peso ExtraBold (path com fill-rule evenodd para o miolo) -->
+  <path
+    d="M 11 14
+       L 28 14
+       C 39 14, 46 22, 46 32
+       C 46 42, 39 50, 28 50
+       L 11 50 Z
+       M 19 22
+       L 27 22
+       C 33 22, 37 26, 37 32
+       C 37 38, 33 42, 27 42
+       L 19 42 Z"
+    fill="#FFFFFF"
+    fill-rule="evenodd"/>
+
+  <!-- Ponto verde DIRETRIX — assinatura da marca -->
+  <circle cx="54" cy="50" r="8" fill="#00A86B" opacity="0.18"/>
+  <circle cx="54" cy="50" r="5" fill="#00A86B"/>
+</svg>
