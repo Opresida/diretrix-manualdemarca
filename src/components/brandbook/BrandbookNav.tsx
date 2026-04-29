@@ -2,7 +2,10 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: 'DNA', href: '#dna' },
   { label: 'Cromia', href: '#cromia' },
   { label: 'Tipo', href: '#tipo' },
+  { label: 'Ícones', href: '#iconografia' },
+  { label: 'UI', href: '#componentes' },
   { label: 'Físico', href: '#fisico' },
+  { label: 'Digital', href: '#digital' },
   { label: 'Premium', href: '#premium' },
   { label: 'Estratégia', href: '#roadmap' },
 ]

@@ -4,8 +4,11 @@ import { Hero } from '@/components/brandbook/sections/Hero'
 import { DNA } from '@/components/brandbook/sections/DNA'
 import { Cromia } from '@/components/brandbook/sections/Cromia'
 import { Tipografia } from '@/components/brandbook/sections/Tipografia'
+import { Iconografia } from '@/components/brandbook/sections/Iconografia'
+import { UISystem } from '@/components/brandbook/sections/UISystem'
 import { Estacionario } from '@/components/brandbook/sections/Estacionario'
 import { Digital } from '@/components/brandbook/sections/Digital'
+import { OpenGraph } from '@/components/brandbook/sections/OpenGraph'
 import { Premium } from '@/components/brandbook/sections/Premium'
 import { Combos } from '@/components/brandbook/sections/Combos'
 import { Roadmap } from '@/components/brandbook/sections/Roadmap'
@@ -23,8 +26,11 @@ export default function Brandbook() {
         <DNA />
         <Cromia />
         <Tipografia />
+        <Iconografia />
+        <UISystem />
         <Estacionario />
         <Digital />
+        <OpenGraph />
         <Premium />
         <Combos />
         <Roadmap />
