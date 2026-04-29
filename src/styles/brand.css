@@ -71,6 +71,179 @@ nav.diretrix-nav {
   transform: translateY(-1px);
 }
 
+/* ──────────────────────────────────────────
+   HAMBURGER + MOBILE MENU BRANDBOOK
+────────────────────────────────────────── */
+.diretrix-nav-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borda);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: border-color 0.25s, background 0.25s;
+}
+.diretrix-nav-burger:hover {
+  border-color: var(--borda-verde);
+  background: rgba(0, 168, 107, 0.04);
+}
+.diretrix-nav-burger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--verde);
+  border-radius: 1px;
+}
+.diretrix-nav-burger span:nth-child(2) {
+  width: 12px;
+  margin-left: 6px;
+}
+
+.brandbook-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  background: var(--preto);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(0, 168, 107, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 0% 100%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+}
+.brandbook-mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.brandbook-mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 72px;
+  border-bottom: 1px solid var(--borda);
+  flex-shrink: 0;
+}
+.brandbook-mobile-menu-close {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.brandbook-mobile-menu-close:hover {
+  border-color: var(--borda-verde);
+  background: rgba(0, 168, 107, 0.06);
+}
+
+.brandbook-mobile-menu-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.brandbook-mobile-menu-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.brandbook-mobile-menu-label {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--verde);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--borda);
+}
+.brandbook-mobile-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.brandbook-mobile-menu-list a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--branco);
+  text-decoration: none;
+  border-bottom: 1px solid var(--borda);
+  transition: color 0.25s, padding 0.25s;
+}
+.brandbook-mobile-menu-list a:active {
+  color: var(--verde);
+  padding-left: 12px;
+}
+.brandbook-mobile-menu-num {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 24px;
+}
+.brandbook-mobile-menu-list a span:last-child {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--texto);
+}
+
+.brandbook-mobile-menu-foot {
+  position: sticky;
+  bottom: 0;
+  padding: 20px 24px 32px;
+  background: linear-gradient(180deg, transparent, rgba(5, 7, 13, 0.95) 30%);
+  flex-shrink: 0;
+}
+.brandbook-mobile-menu-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--verde);
+  color: var(--preto);
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 0 32px rgba(0, 168, 107, 0.35);
+  transition: all 0.25s;
+}
+.brandbook-mobile-menu-cta:active {
+  transform: scale(0.98);
+}
+
 /* ══════════════════════════════════════════
    HERO MONUMENTAL — BRANDBOOK
 ══════════════════════════════════════════ */
@@ -866,12 +1039,20 @@ nav.diretrix-nav {
 /* ══════════════════════════════════════════
    RESPONSIVO BRANDBOOK
 ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  /* Hamburger ativa antes pq nav tem 9 links */
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+  .diretrix-nav-burger {
+    display: flex;
+  }
+}
+
 @media (max-width: 768px) {
   nav.diretrix-nav {
     padding: 0 20px;
-  }
-  .nav-links {
-    display: none;
   }
   .grid-2,
   .grid-3,
@@ -1530,5 +1711,274 @@ nav.diretrix-nav {
   .ui-tabs {
     width: 100%;
     overflow-x: auto;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVO BRANDBOOK — Breakpoints intermediários
+══════════════════════════════════════════ */
+
+/* Tablet portrait — refina cards e padding */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  /* Hero brandbook */
+  .hero {
+    padding: 130px 20px 90px;
+  }
+  .hero-title {
+    font-size: clamp(40px, 11vw, 80px);
+  }
+
+  /* Cromia + tipografia + ícones — gaps menores */
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Type blocks compactos */
+  .type-content {
+    padding: 32px 24px;
+  }
+  .display-text {
+    font-size: clamp(36px, 9vw, 60px);
+  }
+
+  /* Email signature gen — preview iframe não pode estourar */
+  .email-gen-preview-iframe {
+    min-height: 420px;
+  }
+  .email-gen-source {
+    font-size: 10px;
+    max-height: 220px;
+  }
+
+  /* Iconografia */
+  .ico-library-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* UI System — abas com scroll */
+  .ui-tabs {
+    -webkit-overflow-scrolling: touch;
+  }
+  .ui-tab {
+    flex-shrink: 0;
+  }
+
+  /* Estacionário: cards 3D não viram fundamentais — encolher */
+  .folder,
+  .letterhead {
+    width: 100%;
+    max-width: 360px;
+    height: 360px;
+    transform: rotateX(8deg) rotateY(-5deg);
+    padding: 32px;
+  }
+  .folder-logo {
+    font-size: 26px;
+  }
+  .folder-title {
+    font-size: 20px;
+  }
+  .lh-watermark {
+    font-size: 240px;
+  }
+  .envelope {
+    width: 100%;
+    max-width: 360px;
+    height: 180px;
+  }
+  .note-card {
+    width: 200px;
+    height: 270px;
+  }
+  .notepad {
+    width: 220px;
+    height: 300px;
+  }
+  .bcard {
+    width: 100%;
+    max-width: 320px;
+    height: 180px;
+  }
+}
+
+/* Mobile pequeno — padding mínimo, tipografia ajustada */
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 16px;
+  }
+  .section-title {
+    font-size: clamp(26px, 8vw, 40px);
+  }
+  .section-desc {
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 110px 16px 70px;
+  }
+  .hero-title {
+    font-size: clamp(36px, 13vw, 60px);
+  }
+  .hero-desc {
+    font-size: 14px;
+  }
+
+  /* Cromia 2x2 em vez de 1col stretched */
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .swatch-preview {
+    height: 120px;
+  }
+  .swatch-name {
+    font-size: 12px;
+  }
+
+  /* Email signature gen */
+  .email-gen-grid {
+    gap: 24px;
+  }
+  .email-gen-actions-row {
+    grid-template-columns: 1fr;
+  }
+  .email-gen-btn {
+    padding: 12px 18px;
+  }
+  .email-gen-preview-iframe {
+    min-height: 460px;
+  }
+  .email-gen-source {
+    padding: 14px 16px;
+    font-size: 9px;
+    max-height: 180px;
+  }
+  .email-gen-howto {
+    padding: 16px;
+  }
+  .email-gen-howto li {
+    font-size: 12px;
+  }
+
+  /* OG gen */
+  .og-gen-grid {
+    gap: 24px;
+  }
+
+  /* Iconografia mobile pequeno */
+  .ico-library-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ico-library-name {
+    font-size: 11px;
+  }
+  .ico-library-use {
+    font-size: 10px;
+  }
+
+  /* UI System specs */
+  .ui-spec-demo {
+    padding: 22px 16px;
+    min-height: 110px;
+  }
+  .ui-spec-head {
+    padding: 12px 16px;
+  }
+  .ui-spec-foot {
+    padding: 12px 16px;
+  }
+
+  /* Stationery 3D — versão miniatura mobile */
+  .stage-3d {
+    gap: 36px;
+    padding: 24px 0;
+  }
+  .folder,
+  .letterhead {
+    height: 320px;
+    padding: 24px;
+  }
+  .lh-watermark {
+    font-size: 180px;
+  }
+  .lh-body {
+    padding: 32px 24px;
+  }
+  .envelope {
+    height: 160px;
+  }
+  .wax-seal {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+  .note-card {
+    width: 180px;
+    height: 240px;
+  }
+  .note-logo {
+    font-size: 36px;
+  }
+  .notepad {
+    width: 200px;
+    height: 280px;
+  }
+
+  /* Email sig estática (versão simples brandbook) */
+  .email-sig {
+    padding: 24px 20px;
+  }
+  .email-name {
+    font-size: 17px;
+  }
+
+  /* Touchpoints luxury */
+  .luxury-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+  .luxury-title {
+    font-size: 16px;
+  }
+  .luxury-desc {
+    font-size: 13px;
+  }
+
+  /* Combos card */
+  .card {
+    padding: 28px 22px;
+  }
+}
+
+/* Telas extra pequenas (375px) */
+@media (max-width: 375px) {
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .ico-library-grid {
+    grid-template-columns: 1fr;
+  }
+  .stage-3d {
+    perspective: none;
+  }
+  .folder,
+  .letterhead,
+  .envelope,
+  .note-card,
+  .notepad,
+  .bcard {
+    transform: none;
   }
 }
