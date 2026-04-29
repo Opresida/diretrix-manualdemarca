@@ -8,7 +8,9 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
   { label: 'Ícones', href: '#iconografia' },
   { label: 'UI', href: '#componentes' },
   { label: 'Físico', href: '#fisico' },
+  { label: 'Cartão', href: '#cartao' },
   { label: 'Digital', href: '#digital' },
+  { label: 'Proposta', href: '#proposta' },
   { label: 'Premium', href: '#premium' },
   { label: 'Estratégia', href: '#roadmap' },
 ]

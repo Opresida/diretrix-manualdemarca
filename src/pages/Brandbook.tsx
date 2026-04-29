@@ -7,8 +7,10 @@ import { Tipografia } from '@/components/brandbook/sections/Tipografia'
 import { Iconografia } from '@/components/brandbook/sections/Iconografia'
 import { UISystem } from '@/components/brandbook/sections/UISystem'
 import { Estacionario } from '@/components/brandbook/sections/Estacionario'
+import { CartaoDeVisita } from '@/components/brandbook/sections/CartaoDeVisita'
 import { Digital } from '@/components/brandbook/sections/Digital'
 import { OpenGraph } from '@/components/brandbook/sections/OpenGraph'
+import { PropostaComercial } from '@/components/brandbook/sections/PropostaComercial'
 import { Premium } from '@/components/brandbook/sections/Premium'
 import { Combos } from '@/components/brandbook/sections/Combos'
 import { Roadmap } from '@/components/brandbook/sections/Roadmap'
@@ -29,8 +31,10 @@ export default function Brandbook() {
         <Iconografia />
         <UISystem />
         <Estacionario />
+        <CartaoDeVisita />
         <Digital />
         <OpenGraph />
+        <PropostaComercial />
         <Premium />
         <Combos />
         <Roadmap />
